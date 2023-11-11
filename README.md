@@ -61,16 +61,23 @@ The tool is used via npm scripts that are already defined in it's package.json f
 
 Below are the available npm scripts:
 
+- `setup`: Install the required packages as dev dependencies
 - `config`: Read and cache the configuration file
 - `build`: Generate declarations using cached configurations then `clean`
 - `clean`: Clean the declaration files
 - `doc`: Generate documentations using cached configurations
 
+First thing to do is to run the following command to install all the necessary dependencies
+
+```bash
+npm explore @disqada/typedoc -- npm run setup
+```
+
 You'll most likely have the following scripts, use the `setup` script on initialisation and every time you update the configuration file, then use the `build` and `doc` scripts for generating declarations and documentation
 
 ```json
 "scripts": {
-    "setup": "npm explore @disqada/typedoc -- npm run config",
+    "config": "npm explore @disqada/typedoc -- npm run config",
     "build": "npm explore @disqada/typedoc -- npm run build",
     "doc": "npm explore @disqada/typedoc -- npm run doc"
 }
