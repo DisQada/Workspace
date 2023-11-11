@@ -1,0 +1,73 @@
+{
+    "name": "@disqada/typedoc",
+    "version": "0.0.0",
+    "displayName": "TypeDoc",
+    "description": "Generate types and documentation with a click",
+    "scripts": {
+        "reset": "node ./reset.js",
+        "config": "node ./src/config.js",
+        "build": "tsc -p ./config/tsconfig.json && npm run clean",
+        "clean": "node ./src/index.js",
+        "doc": "typedoc --options ./config/typedoc.json",
+        "lint": "eslint . --fix",
+        "format": "prettier . --write",
+        "test": "jest",
+        "commit": "git-cz",
+        "semantic-release": "semantic-release"
+    },
+    "type": "commonjs",
+    "files": [
+        "src/",
+        "config/",
+        "CHANGELOG.md",
+        "README.md",
+        "LICENSE"
+    ],
+    "homepage": "https://disqada.github.io/TypeDoc",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DisQada/TypeDoc.git"
+    },
+    "bugs": {
+        "url": "https://github.com/DisQada/TypeDoc/issues"
+    },
+    "keywords": [
+        "Types",
+        "JSDoc",
+        "TypeDoc",
+        "Documentation",
+        "Auto Generation"
+    ],
+    "author": {
+        "name": "The Alpha",
+        "email": "contact@nabilalsaiad.com",
+        "url": "https://links.nabilalsaiad.com"
+    },
+    "contributors": [],
+    "license": "Apache-2.0",
+    "dependencies": {},
+    "devDependencies": {
+        "@mxssfd/typedoc-theme": "^1.1.3",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "typedoc": "^0.25.3",
+        "typedoc-plugin-extras": "^3.0.0",
+        "typedoc-plugin-missing-exports": "^2.1.0",
+        "typescript": "^5.2.2",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^8.39.0",
+        "eslint-plugin-jest": "^27.2.3",
+        "jest": "^29.6.2",
+        "prettier": "^2.8.8",
+        "semantic-release": "^21.0.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}

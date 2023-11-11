@@ -1,0 +1,17 @@
+{
+    "root": true,
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "script"
+    },
+    "extends": ["eslint:recommended"],
+    "plugins": [],
+    "rules": {
+        "promise/always-return": "off"
+    }
+}
