@@ -76,7 +76,7 @@ You'll most likely have the following scripts, use the `setup` script on initial
 }
 ```
 
-If you're constantly changing the configurations, you can make one script that reads the configurations and generates the declarations/documentation like the following:
+If you're constantly changing the configurations, you can make one script that reads the configurations and generates the declarations/documentation like the following example:
 
 ```json
 "scripts": {
