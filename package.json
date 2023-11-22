@@ -5,7 +5,6 @@
     "description": "Generate types and documentation with a click",
     "scripts": {
         "setup": "npm i -D typescript typedoc typedoc-plugin-extras typedoc-plugin-missing-exports @mxssfd/typedoc-theme",
-        "reset": "node ./reset.js",
         "config": "node ./src/config.js",
         "build": "tsc -p ./config/tsconfig.json && npm run clean",
         "clean": "node ./src/index.js",

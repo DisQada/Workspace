@@ -1,3 +1,7 @@
+# Non-template config files
+config/*
+!config/*.template.json
+
 # Logs
 logs
 *.log
