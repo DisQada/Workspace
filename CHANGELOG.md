@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/DisQada/TypeDoc/compare/v1.0.2...v1.0.3) (2023-11-22)
+
+
+### Bug Fixes
+
+* **dependencies:** Specify more packages as peers ([9f58242](https://github.com/DisQada/TypeDoc/commit/9f58242f0ceb6540108ed5a9539985e9d9543ba2))
+
 ## [1.0.2](https://github.com/DisQada/TypeDoc/compare/v1.0.1...v1.0.2) (2023-11-22)
 
 
