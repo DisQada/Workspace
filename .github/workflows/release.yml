@@ -27,9 +27,6 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Reset
-              run: npm run reset
-
             - name: Release
               run: npm run semantic-release
               env:
