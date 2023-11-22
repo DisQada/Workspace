@@ -1,6 +1,6 @@
 {
     "name": "@disqada/typedoc",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "displayName": "TypeDoc",
     "description": "Generate types and documentation with a click",
     "scripts": {
