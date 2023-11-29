@@ -1,5 +1,10 @@
 {
     "root": "src",
     "types": "types",
-    "out": "docs"
+    "out": "docs",
+
+    "links": {
+        "DisQada": "https://github.com/DisQada",
+        "Developer": "https://links.nabilalsaiad.com"
+    }
 }

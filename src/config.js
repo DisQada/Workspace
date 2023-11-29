@@ -66,6 +66,11 @@ if (typedocData) {
         navLinks["Source Code"] = repo.url;
     }
 
+    const links = packageData["links"];
+    if (links) {
+        typedocData["navigationLinks"] = Object.assign(navLinks, links);
+    }
+
     /** @type {string} */
     typedocData = JSON.stringify(typedocData);
 

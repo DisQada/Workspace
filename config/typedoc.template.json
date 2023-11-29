@@ -19,8 +19,6 @@
     },
     "navigationLinks": {
         "npm package": "https://www.npmjs.com/package/{{name}}"
-        "DisQada": "https://github.com/DisQada",
-        "Developer": "https://links.nabilalsaiad.com"
     },
 
     "emit": "docs",
