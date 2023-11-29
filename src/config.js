@@ -6,7 +6,7 @@ const configPath = resolve("../../../docconfig.json");
 let configData;
 
 if (!existsSync(configPath)) {
-    const data = readFileSync(resolve("./config/docconfig.template.json"));
+    const data = readConfigTemplateFile("docconfig");
     writeFileSync(configPath, data);
     configData = JSON.parse(data.toString());
 } else {
@@ -15,43 +15,34 @@ if (!existsSync(configPath)) {
 
 //
 
-let tsData = readFileSync(resolve("./config/tsconfig.template.json"));
-
+let tsData = readConfigTemplateFile("tsconfig");
 if (tsData) {
-    tsData = tsData.toString();
-
     tsData = fillData(tsData, "root", "src");
     tsData = fillData(tsData, "types", "types");
 
-    writeFileSync(resolve("./config/tsconfig.json"), tsData);
+    writeConfigFile("tsconfig", tsData);
 }
 
 //
 
-let tsDocData = readFileSync(resolve("./config/tsconfig.template.doc.json"));
-
+let tsDocData = readConfigTemplateFile("tsconfig.doc");
 if (tsDocData) {
-    tsDocData = tsDocData.toString();
-
     tsDocData = fillData(tsDocData, "types", "types");
 
-    writeFileSync(resolve("./config/tsconfig.doc.json"), tsDocData);
+    writeConfigFile("tsconfig.doc", tsDocData);
 }
 
 //
 
-let typedocData = readFileSync(resolve("./config/typedoc.template.json"));
-
+let typedocData = readConfigTemplateFile("typedoc");
 if (typedocData) {
-    typedocData = typedocData.toString();
-
     typedocData = fillData(typedocData, "root", "src");
     typedocData = fillData(typedocData, "types", "types");
     typedocData = fillData(typedocData, "out", "docs");
     typedocData = fillData(typedocData, "npm");
     typedocData = fillData(typedocData, "github");
 
-    writeFileSync(resolve("./config/typedoc.json"), typedocData);
+    writeConfigFile("typedoc", typedocData);
 }
 
 /**
@@ -69,4 +60,24 @@ function fillData(data, arg, defaultValue) {
 
     const regex = new RegExp("{{" + arg + "}}", "g");
     return data.replace(regex, value);
+}
+
+/**
+ * Read config template file and convert it to string
+ * @param {string} fileName
+ * @returns {string}
+ */
+function readConfigTemplateFile(fileName) {
+    return readFileSync(
+        resolve(`./config/${fileName}.template.json`)
+    ).toString();
+}
+/**
+ * Write config data to a file
+ * @param {string} fileName
+ * @param {string} data
+ * @returns {void}
+ */
+function writeConfigFile(fileName, data) {
+    writeFileSync(resolve(`./config/${fileName}.json`), data);
 }
