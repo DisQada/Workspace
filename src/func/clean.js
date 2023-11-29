@@ -58,6 +58,8 @@ function cleanFile(file) {
         count++;
     }
 
+    file = file.replace(/export(?!\s+declare)/g, "export declare");
+
     if (count === threshold) {
         console.warn(`Reached threshold of ${threshold} loops`);
     }
