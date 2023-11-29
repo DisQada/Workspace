@@ -1,4 +1,4 @@
-const { writeFileSync, stat } = require("fs");
+const { writeFileSync, statSync } = require("fs");
 const { resolve } = require("path");
 const { cleanFolder } = require("./func/clean");
 const { readFileSync } = require("fs");
@@ -15,21 +15,16 @@ if (configData) {
 }
 
 const path = resolve(`../../../${folderName}`);
-stat(path, (err, stats) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
+const stats = statSync(path);
 
-    if (stats && stats.isDirectory()) {
-        cleanFolder(path)
-            .then((dataMap) => {
-                for (const pair of dataMap) {
-                    const filePath = pair[0];
-                    const fileData = pair[1];
-                    writeFileSync(filePath, fileData);
-                }
-            })
-            .catch(console.error);
-    }
-});
+if (stats && stats.isDirectory()) {
+    cleanFolder(path)
+        .then((dataMap) => {
+            for (const pair of dataMap) {
+                const filePath = pair[0];
+                const fileData = pair[1];
+                writeFileSync(filePath, fileData);
+            }
+        })
+        .catch(console.error);
+}
