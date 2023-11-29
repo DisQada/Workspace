@@ -6,9 +6,7 @@
         "typedoc-plugin-missing-exports",
         "typedoc-plugin-extras"
     ],
-    // "markedOptions": {},
     "name": "{{github}}",
-    // "cname": "nabilalsaiad.com",
 
     "entryPoints": ["../../../../{{types}}/exports.*"],
     "out": "../../../../{{out}}",
@@ -24,9 +22,7 @@
         "GitHub": "https://github.com/DisQada/{{github}}",
         "DisQada": "https://github.com/DisQada",
         "Developer": "https://links.nabilalsaiad.com"
-        // "Home": "index.html"
     },
-    // "sidebarLinks": {},
 
     "emit": "docs",
     "entryPointStrategy": "expand",
@@ -42,8 +38,6 @@
     "jsDocCompatibility": true,
     "categorizeByGroup": false,
 
-    // "externalSymbolLinkMappings": {},
-
     "visibilityFilters": {
         "private": false,
         "protected": false,
@@ -58,7 +52,6 @@
     "excludeNotDocumented": false,
 
     "customTitle": "Home",
-    // "customDescription": "Description Description Description",
     "footerLastModified": true,
     "footerTypedocVersion": true
 }
