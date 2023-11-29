@@ -51,6 +51,7 @@
         "external": false
     },
 
+    "exclude": ["**/node_modules/**/*"],
     "excludePrivate": true,
     "excludeProtected": true,
     "excludeReferences": false,
