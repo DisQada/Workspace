@@ -1,16 +1,20 @@
 {
     "root": true,
     "env": {
-        "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "commonjs": true
     },
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "script"
     },
-    "extends": ["eslint:recommended"],
-    "plugins": [],
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/recommended",
+        "plugin:promise/recommended"
+    ],
+    "plugins": ["import", "promise"],
     "rules": {
         "promise/always-return": "off"
     }
