@@ -1,7 +1,5 @@
 {
     "root": "src",
     "types": "types",
-    "out": "docs",
-    "npm": "name",
-    "github": "Name"
+    "out": "docs"
 }

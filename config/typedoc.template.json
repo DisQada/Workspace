@@ -6,7 +6,7 @@
         "typedoc-plugin-missing-exports",
         "typedoc-plugin-extras"
     ],
-    "name": "{{github}}",
+    "name": "{{displayName}}",
 
     "entryPoints": ["../../../../{{types}}/exports.*"],
     "out": "../../../../{{out}}",
@@ -18,8 +18,7 @@
         "includeGroups": true
     },
     "navigationLinks": {
-        "npm": "https://www.npmjs.com/package/@disqada/{{npm}}",
-        "GitHub": "https://github.com/DisQada/{{github}}",
+        "npm package": "https://www.npmjs.com/package/{{name}}"
         "DisQada": "https://github.com/DisQada",
         "Developer": "https://links.nabilalsaiad.com"
     },

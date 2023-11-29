@@ -39,8 +39,37 @@ if (typedocData) {
     typedocData = fillData(typedocData, "root", "src");
     typedocData = fillData(typedocData, "types", "types");
     typedocData = fillData(typedocData, "out", "docs");
-    typedocData = fillData(typedocData, "npm");
-    typedocData = fillData(typedocData, "github");
+
+    //
+
+    const packagePath = resolve("../../../package.json");
+    /** @type {object} */
+    const packageData = JSON.parse(readFileSync(packagePath).toString());
+
+    const arg1 = "name";
+    const regex1 = new RegExp("{{" + arg1 + "}}", "g");
+    typedocData = typedocData.replace(regex1, packageData[arg1]);
+
+    const arg2 = "displayName";
+    const regex2 = new RegExp("{{" + arg2 + "}}", "g");
+    typedocData = typedocData.replace(
+        regex2,
+        packageData[arg2] ?? packageData[arg1]
+    );
+
+    /** @type {object} */
+    typedocData = JSON.parse(typedocData);
+    const navLinks = typedocData["navigationLinks"];
+
+    const repo = packageData["repository"];
+    if (repo && typeof repo === "object" && repo.url) {
+        navLinks["Source Code"] = repo.url;
+    }
+
+    /** @type {string} */
+    typedocData = JSON.stringify(typedocData);
+
+    //
 
     writeConfigFile("typedoc", typedocData);
 }
