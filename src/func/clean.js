@@ -33,10 +33,6 @@ async function cleanFolder(path) {
 function cleanFile(file) {
     const imports = new Map();
 
-    // let regex = /export type (\w+) = import\("((\.|\/|\\|\w)+)"\)\.\1;/g;
-    // let subst = `export type { $1 } from "$2";`;
-    // file = file.replace(regex, subst);
-
     let path;
     let type;
 

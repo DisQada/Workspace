@@ -34,41 +34,6 @@ async function readFolder(folderPath) {
     return paths;
 }
 
-// /**
-//  * @param {string} str
-//  * @returns {Map<string, string[]>} Map {path, type[]}
-//  */
-// function readImports(str) {
-//     const imports = new Map();
-
-//     const sWord = 'import("';
-//     const eWord = '").';
-
-//     // eslint-disable-next-line no-constant-condition
-//     while (true) {
-//         const start = str.indexOf(sWord);
-//         if (start === -1) {
-//             break;
-//         }
-
-//         str = str.substring(start + sWord.length);
-
-//         const end = str.indexOf(eWord);
-//         const path = str.substring(0, end);
-
-//         str = str.substring(end + eWord.length);
-//         const type = str.substring(0, getEndIndex(str));
-
-//         const arr = imports.get(path) || [];
-//         if (!arr.includes(type)) {
-//             arr.push(type);
-//             imports.set(path, arr);
-//         }
-//     }
-
-//     return imports;
-// }
-
 /**
  * @param {string} str
  * @returns {[string, string, string]} [file, path, type]
@@ -82,8 +47,6 @@ function readImport(str) {
 
     const before = str.indexOf(bWord);
     let start = str.indexOf(sWord);
-
-    // if (start > before) ignore the before and read the next one
 
     if (start === -1) {
         return [str, null, null];
@@ -132,6 +95,5 @@ function getEndIndex(str) {
 
 module.exports = {
     readFolder,
-    // readImports,
     readImport
 };
