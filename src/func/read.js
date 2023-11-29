@@ -36,7 +36,7 @@ async function readFolder(folderPath) {
 
 /**
  * @param {string} str
- * @returns {[string, string, string]} [file, path, type]
+ * @returns {[string, string | null, string | null]} [file, path, type]
  */
 function readImport(str) {
     let file = "";

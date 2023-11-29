@@ -1,7 +1,7 @@
 /**
  * convert an import data as a Map into a string of type imports
  * @param {Map<string, string[]>} imports imports data as <path, type[]>
- * @returns {string} the type imports string
+ * @returns {string | void} the type imports string
  */
 function writeImports(imports) {
     if (!imports || imports.size === 0) {
