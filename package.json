@@ -9,7 +9,8 @@
         "build": "tsc -p ./config/tsconfig.json && npm run clean",
         "doc": "typedoc --options ./config/typedoc.json",
         "lint": "eslint . --fix",
-        "format": "prettier . --write",
+        "lint": "eslint . --fix --ignore-path .gitignore",
+        "format": "prettier . --write --ignore-path .gitignore",
         "test": "npx jest"
     },
     "type": "commonjs",
