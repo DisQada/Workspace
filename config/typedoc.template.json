@@ -6,20 +6,12 @@
         "typedoc-plugin-missing-exports",
         "typedoc-plugin-extras"
     ],
-    "name": "{{displayName}}",
-
     "entryPoints": ["../../../../{{types}}/exports.*"],
+
+    "name": "{{displayName}}",
     "out": "../../../../{{out}}",
     "readme": "../../../../README.md",
     "tsconfig": "./tsconfig.doc.json",
-
-    "navigation": {
-        "includeCategories": true,
-        "includeGroups": true
-    },
-    "navigationLinks": {
-        "npm package": "https://www.npmjs.com/package/{{name}}"
-    },
 
     "emit": "docs",
     "entryPointStrategy": "expand",
@@ -30,17 +22,29 @@
     "darkHighlightTheme": "dark-plus",
     "lightHighlightTheme": "light-plus",
 
+    "navigation": true,
+    "validation": true,
     "includeVersion": true,
     "skipErrorChecking": true,
     "jsDocCompatibility": true,
     "categorizeByGroup": false,
 
+    "navigationLinks": {
+        "npm package": "https://www.npmjs.com/package/{{name}}"
+    },
     "visibilityFilters": {
         "private": false,
         "protected": false,
         "inherited": false,
         "external": false
     },
+
+    "sort": [
+        "kind",
+        "enum-member-source-order",
+        "instance-first",
+        "alphabetical"
+    ],
 
     "exclude": ["**/node_modules/**/*"],
     "excludePrivate": true,
