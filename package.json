@@ -15,8 +15,10 @@
     },
     "type": "commonjs",
     "files": [
-        "src/",
-        "config/",
+        "src",
+        "bin",
+        "config",
+        "template",
         "CHANGELOG.md",
         "README.md",
         "LICENSE.txt"
