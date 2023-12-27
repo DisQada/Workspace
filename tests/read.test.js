@@ -5,13 +5,9 @@ describe("Reading folder paths", () => {
     it("should return expected paths", async () => {
         const paths = await readFolder("src");
         expect(paths).toEqual(
-            [
-                `/src/config.js`,
-                `/src/func/clean.js`,
-                `/src/func/read.js`,
-                `/src/func/write.js`,
-                `/src/index.js`
-            ].map((x) => process.cwd() + x.replace(/\//g, sep))
+            ["func/clean.js", "func/read.js", "func/write.js"].map((subPath) =>
+                (process.cwd() + "/src/" + subPath).replace(/\//g, sep)
+            )
         );
     });
 

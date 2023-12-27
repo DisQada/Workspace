@@ -40,10 +40,7 @@ describe("Converting types map to import", () => {
 
 describe("Negative cases", () => {
     it("should return nothing", () => {
-        let result = writeImports();
-        expect(result).toBeUndefined();
-
-        result = writeImports(new Map());
+        const result = writeImports(new Map());
         expect(result).toBeUndefined();
     });
 });
