@@ -63,9 +63,9 @@ Below are the available npm scripts:
 
 - `setup`: Install the required packages as dev dependencies
 - `config`: Read and cache the configuration file
-- `build`: Generate declarations using cached configurations then `clean`
+- `types`: Generate declarations using cached configurations then `clean`
 - `clean`: Clean the declaration files
-- `doc`: Generate documentations using cached configurations
+- `doc/docs`: Generate documentations using cached configurations
 
 First thing to do is to run the following command to install all the necessary dependencies
 
@@ -73,13 +73,13 @@ First thing to do is to run the following command to install all the necessary d
 npm explore @disqada/typedoc -- npm run setup
 ```
 
-You'll most likely have the following scripts, use the `setup` script on initialisation and every time you update the configuration file, then use the `build` and `doc` scripts for generating declarations and documentation
+You'll most likely have the following scripts, use the `setup` script on initialisation and every time you update the configuration file, then use the `types` and `doc/docs` scripts for generating declarations and documentation
 
 ```json
 "scripts": {
     "config": "npm explore @disqada/typedoc -- npm run config",
-    "build": "npm explore @disqada/typedoc -- npm run build",
-    "doc": "npm explore @disqada/typedoc -- npm run doc"
+    "types": "npm explore @disqada/typedoc -- npm run types",
+    "docs": "npm explore @disqada/typedoc -- npm run docs"
 }
 ```
 
@@ -87,7 +87,7 @@ If you're constantly changing the configurations, you can make one script that r
 
 ```json
 "scripts": {
-    "build": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run build",
-    "doc": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run doc"
+    "types": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run types",
+    "docs": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run docs"
 }
 ```

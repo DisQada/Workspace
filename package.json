@@ -6,9 +6,9 @@
     "scripts": {
         "config": "node ./bin/config.js",
         "clean": "node ./bin/clean.js",
-        "build": "tsc -p ./config/tsconfig.json && npm run clean",
+        "types": "tsc -p ./config/tsconfig.json && npm run clean",
         "doc": "typedoc --options ./config/typedoc.json",
-        "lint": "eslint . --fix",
+        "docs": "typedoc --options ./config/typedoc.json",
         "lint": "eslint . --fix --ignore-path .gitignore",
         "format": "prettier . --write --ignore-path .gitignore",
         "test": "npx jest"
