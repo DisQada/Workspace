@@ -1,23 +1,18 @@
 {
-    "enabled": true,
-    "caseSensitive": true,
-    "language": "en-GB",
-    "words": [
-        "Alsaiad",
-        "analyzer",
-        "Codeo",
-        "disqada",
-        "disqus",
-        "dnd",
-        "docconfig",
-        "docdash",
-        "halfbot",
-        "inferrable",
-        "Longname",
-        "mxssfd",
-        "Nabil",
-        "prerelease",
-        "tsc",
-        "typedefs"
-    ]
+  "caseSensitive": true,
+  "useGitignore": true,
+  "language": "en-GB",
+  "files": [
+    "./src/**/*",
+    "./tests/**/*",
+    "./bin/**/*",
+    "./config/**/*",
+    "README.md"
+  ],
+  "words": [
+    "disqada",
+    "docconfig",
+    "mxssfd",
+    "Qada"
+  ]
 }
