@@ -56,15 +56,12 @@
     "typescript": "5.2.x"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@types/jest": "*",
     "eslint": "*",
     "eslint-plugin-import": "*",
     "eslint-plugin-jest": "*",
     "eslint-plugin-jsdoc": "*",
     "eslint-plugin-promise": "*",
-    "prettier": "*",
-    "semantic-release": "^22.0.12"
+    "prettier": "*"
   }
 }
