@@ -10,9 +10,7 @@
         "doc": "typedoc --options ./config/typedoc.json",
         "lint": "eslint . --fix",
         "format": "prettier . --write",
-        "test": "jest",
-        "commit": "git-cz",
-        "semantic-release": "semantic-release"
+        "test": "npx jest"
     },
     "type": "commonjs",
     "files": [

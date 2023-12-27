@@ -28,7 +28,7 @@ jobs:
               run: npm ci && npm i -D semantic-release @semantic-release/changelog @semantic-release/git
 
             - name: Release
-              run: npm run semantic-release
+              run: npx semantic-release
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
