@@ -1,10 +1,7 @@
 # Dependency directories
 node_modules/
 
-# Non-template config files
-config/*
-!config/*.template.json
-
 # Generated output
+config/
 types/
 docs/
