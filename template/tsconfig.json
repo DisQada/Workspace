@@ -1,23 +1,23 @@
 {
-    "include": ["../../../../{{root}}/"],
-    "exclude": ["**/node_modules/**/*"],
-    "compilerOptions": {
-        "noEmitOnError": false,
+  "include": ["../../../../{{root}}/"],
+  "exclude": ["**/node_modules/**/*"],
+  "compilerOptions": {
+    "noEmitOnError": false,
 
-        "allowJs": true,
-        "checkJs": true,
-        "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "resolveJsonModule": true,
 
-        "declaration": true,
-        "emitDeclarationOnly": true,
-        "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true,
 
-        "rootDir": "../../../../{{root}}",
-        "declarationDir": "../../../../{{types}}",
+    "rootDir": "../../../../{{root}}",
+    "declarationDir": "../../../../{{types}}",
 
-        "target": "ESNext",
-        "module": "NodeNext",
-        "moduleDetection": "auto",
-        "moduleResolution": "NodeNext"
-    }
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleDetection": "auto",
+    "moduleResolution": "NodeNext"
+  }
 }

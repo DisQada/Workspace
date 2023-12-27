@@ -1,84 +1,84 @@
-const { readFileSync, writeFileSync, existsSync } = require("fs");
-const { resolve } = require("path");
+const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { resolve } = require('path')
 
-const encoding = "utf8";
+const encoding = 'utf8'
 
-const configPath = resolve("../../../docconfig.json");
+const configPath = resolve('../../../docconfig.json')
 /** @type {string} */
-let configData;
+let configData
 
 if (!existsSync(configPath)) {
-    const data = readTemplateFile("docconfig");
-    writeFileSync(configPath, data, encoding);
-    configData = JSON.parse(data.toString());
+  const data = readTemplateFile('docconfig')
+  writeFileSync(configPath, data, encoding)
+  configData = JSON.parse(data.toString())
 } else {
-    configData = JSON.parse(readFileSync(configPath, encoding));
+  configData = JSON.parse(readFileSync(configPath, encoding))
 }
 
 //
 
-let tsData = readTemplateFile("tsconfig");
+let tsData = readTemplateFile('tsconfig')
 if (tsData) {
-    tsData = fillData(tsData, "root", "src");
-    tsData = fillData(tsData, "types", "types");
+  tsData = fillData(tsData, 'root', 'src')
+  tsData = fillData(tsData, 'types', 'types')
 
-    writeConfigFile("tsconfig", tsData);
+  writeConfigFile('tsconfig', tsData)
 }
 
 //
 
-let tsDocData = readTemplateFile("tsconfig.doc");
+let tsDocData = readTemplateFile('tsconfig.doc')
 if (tsDocData) {
-    tsDocData = fillData(tsDocData, "types", "types");
+  tsDocData = fillData(tsDocData, 'types', 'types')
 
-    writeConfigFile("tsconfig.doc", tsDocData);
+  writeConfigFile('tsconfig.doc', tsDocData)
 }
 
 //
 
-let typedocData = readTemplateFile("typedoc");
+let typedocData = readTemplateFile('typedoc')
 if (typedocData) {
-    typedocData = fillData(typedocData, "root", "src");
-    typedocData = fillData(typedocData, "types", "types");
-    typedocData = fillData(typedocData, "out", "docs");
+  typedocData = fillData(typedocData, 'root', 'src')
+  typedocData = fillData(typedocData, 'types', 'types')
+  typedocData = fillData(typedocData, 'out', 'docs')
 
-    //
+  //
 
-    const packagePath = resolve("../../../package.json");
-    /** @type {object} */
-    const packageData = JSON.parse(readFileSync(packagePath, encoding));
+  const packagePath = resolve('../../../package.json')
+  /** @type {object} */
+  const packageData = JSON.parse(readFileSync(packagePath, encoding))
 
-    const arg1 = "name";
-    const regex1 = new RegExp("{{" + arg1 + "}}", "g");
-    typedocData = typedocData.replace(regex1, packageData[arg1]);
+  const arg1 = 'name'
+  const regex1 = new RegExp('{{' + arg1 + '}}', 'g')
+  typedocData = typedocData.replace(regex1, packageData[arg1])
 
-    const arg2 = "displayName";
-    const regex2 = new RegExp("{{" + arg2 + "}}", "g");
-    typedocData = typedocData.replace(
-        regex2,
-        packageData[arg2] ?? packageData[arg1]
-    );
+  const arg2 = 'displayName'
+  const regex2 = new RegExp('{{' + arg2 + '}}', 'g')
+  typedocData = typedocData.replace(
+    regex2,
+    packageData[arg2] ?? packageData[arg1]
+  )
 
-    /** @type {object} */
-    typedocData = JSON.parse(typedocData);
-    const navLinks = typedocData["navigationLinks"];
+  /** @type {object} */
+  typedocData = JSON.parse(typedocData)
+  const navLinks = typedocData['navigationLinks']
 
-    const repo = packageData["repository"];
-    if (repo && typeof repo === "object" && repo.url) {
-        navLinks["Source Code"] = repo.url;
-    }
+  const repo = packageData['repository']
+  if (repo && typeof repo === 'object' && repo.url) {
+    navLinks['Source Code'] = repo.url
+  }
 
-    const links = packageData["links"];
-    if (links) {
-        typedocData["navigationLinks"] = Object.assign(navLinks, links);
-    }
+  const links = packageData['links']
+  if (links) {
+    typedocData['navigationLinks'] = Object.assign(navLinks, links)
+  }
 
-    /** @type {string} */
-    typedocData = JSON.stringify(typedocData);
+  /** @type {string} */
+  typedocData = JSON.stringify(typedocData)
 
-    //
+  //
 
-    writeConfigFile("typedoc", typedocData);
+  writeConfigFile('typedoc', typedocData)
 }
 
 /**
@@ -88,14 +88,14 @@ if (typedocData) {
  * @returns {string}
  */
 function fillData(data, arg, defaultValue) {
-    /** @type {string} */
-    let value = configData[arg];
-    if (!value) {
-        value = defaultValue;
-    }
+  /** @type {string} */
+  let value = configData[arg]
+  if (!value) {
+    value = defaultValue
+  }
 
-    const regex = new RegExp("{{" + arg + "}}", "g");
-    return data.replace(regex, value);
+  const regex = new RegExp('{{' + arg + '}}', 'g')
+  return data.replace(regex, value)
 }
 
 /**
@@ -104,7 +104,7 @@ function fillData(data, arg, defaultValue) {
  * @returns {string}
  */
 function readTemplateFile(fileName) {
-    return readFileSync(resolve(`./template/${fileName}.json`), encoding);
+  return readFileSync(resolve(`./template/${fileName}.json`), encoding)
 }
 /**
  * Write config data to a file
@@ -113,5 +113,5 @@ function readTemplateFile(fileName) {
  * @returns {void}
  */
 function writeConfigFile(fileName, data) {
-    writeFileSync(resolve(`./config/${fileName}.json`), data, encoding);
+  writeFileSync(resolve(`./config/${fileName}.json`), data, encoding)
 }

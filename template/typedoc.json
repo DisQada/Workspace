@@ -1,58 +1,58 @@
 {
-    "$schema": "https://typedoc.org/schema.json",
+  "$schema": "https://typedoc.org/schema.json",
 
-    "plugin": [
-        "@mxssfd/typedoc-theme",
-        "typedoc-plugin-missing-exports",
-        "typedoc-plugin-extras"
-    ],
-    "entryPoints": ["../../../../{{types}}/exports.*"],
+  "plugin": [
+    "@mxssfd/typedoc-theme",
+    "typedoc-plugin-missing-exports",
+    "typedoc-plugin-extras"
+  ],
+  "entryPoints": ["../../../../{{types}}/exports.*"],
 
-    "name": "{{displayName}}",
-    "out": "../../../../{{out}}",
-    "readme": "../../../../README.md",
-    "tsconfig": "./tsconfig.doc.json",
+  "name": "{{displayName}}",
+  "out": "../../../../{{out}}",
+  "readme": "../../../../README.md",
+  "tsconfig": "./tsconfig.doc.json",
 
-    "emit": "docs",
-    "entryPointStrategy": "expand",
-    "commentStyle": "jsdoc",
-    "htmlLang": "en-GB",
+  "emit": "docs",
+  "entryPointStrategy": "expand",
+  "commentStyle": "jsdoc",
+  "htmlLang": "en-GB",
 
-    "theme": "my-theme",
-    "darkHighlightTheme": "dark-plus",
-    "lightHighlightTheme": "light-plus",
+  "theme": "my-theme",
+  "darkHighlightTheme": "dark-plus",
+  "lightHighlightTheme": "light-plus",
 
-    "navigation": true,
-    "validation": true,
-    "includeVersion": true,
-    "skipErrorChecking": true,
-    "jsDocCompatibility": true,
-    "categorizeByGroup": false,
+  "navigation": true,
+  "validation": true,
+  "includeVersion": true,
+  "skipErrorChecking": true,
+  "jsDocCompatibility": true,
+  "categorizeByGroup": false,
 
-    "navigationLinks": {
-        "npm package": "https://www.npmjs.com/package/{{name}}"
-    },
-    "visibilityFilters": {
-        "private": false,
-        "protected": false,
-        "inherited": false,
-        "external": false
-    },
+  "navigationLinks": {
+    "npm package": "https://www.npmjs.com/package/{{name}}"
+  },
+  "visibilityFilters": {
+    "private": false,
+    "protected": false,
+    "inherited": false,
+    "external": false
+  },
 
-    "sort": [
-        "kind",
-        "enum-member-source-order",
-        "instance-first",
-        "alphabetical"
-    ],
+  "sort": [
+    "kind",
+    "enum-member-source-order",
+    "instance-first",
+    "alphabetical"
+  ],
 
-    "exclude": ["**/node_modules/**/*"],
-    "excludePrivate": true,
-    "excludeProtected": true,
-    "excludeReferences": false,
-    "excludeNotDocumented": false,
+  "exclude": ["**/node_modules/**/*"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeReferences": false,
+  "excludeNotDocumented": false,
 
-    "customTitle": "Home",
-    "footerLastModified": true,
-    "footerTypedocVersion": true
+  "customTitle": "Home",
+  "footerLastModified": true,
+  "footerTypedocVersion": true
 }

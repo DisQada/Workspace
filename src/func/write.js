@@ -4,21 +4,21 @@
  * @returns {string | void} the type imports string
  */
 function writeImports(imports) {
-    if (imports.size === 0) {
-        return;
-    }
+  if (imports.size === 0) {
+    return
+  }
 
-    let lines = "";
-    for (const iterator of imports) {
-        const path = iterator[0];
-        const types = iterator[1];
+  let lines = ''
+  for (const iterator of imports) {
+    const path = iterator[0]
+    const types = iterator[1]
 
-        lines += `import type { ${types.join(", ")} } from "${path}";\n`;
-    }
+    lines += `import type { ${types.join(', ')} } from "${path}";\n`
+  }
 
-    return lines;
+  return lines
 }
 
 module.exports = {
-    writeImports
-};
+  writeImports
+}

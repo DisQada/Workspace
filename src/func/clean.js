@@ -1,6 +1,6 @@
-const { readFolder, readImport } = require("./read");
-const { writeImports } = require("./write");
-const { readFile } = require("fs/promises");
+const { readFolder, readImport } = require('./read')
+const { writeImports } = require('./write')
+const { readFile } = require('fs/promises')
 
 /**
  * @param {string} path
@@ -8,22 +8,22 @@ const { readFile } = require("fs/promises");
  * @async
  */
 async function cleanFolder(path) {
-    const fullPaths = await readFolder(path);
-    const files = await Promise.all(fullPaths.map((x) => readFile(x)));
+  const fullPaths = await readFolder(path)
+  const files = await Promise.all(fullPaths.map((x) => readFile(x)))
 
-    const newFiles = new Map();
+  const newFiles = new Map()
 
-    for (let i = 0; i < fullPaths.length; i++) {
-        let file = files[i].toString();
-        if (!file || !file.includes("import(")) {
-            continue;
-        }
-
-        const newFile = cleanFile(file);
-        newFiles.set(fullPaths[i], newFile);
+  for (let i = 0; i < fullPaths.length; i++) {
+    let file = files[i].toString()
+    if (!file || !file.includes('import(')) {
+      continue
     }
 
-    return newFiles;
+    const newFile = cleanFile(file)
+    newFiles.set(fullPaths[i], newFile)
+  }
+
+  return newFiles
 }
 
 /**
@@ -31,47 +31,47 @@ async function cleanFolder(path) {
  * @returns {string}
  */
 function cleanFile(file) {
-    const imports = new Map();
+  const imports = new Map()
 
-    let path;
-    let type;
+  let path
+  let type
 
-    let count = 0;
-    const threshold = 10000;
+  let count = 0
+  const threshold = 10000
 
-    while (count < threshold) {
-        const result = readImport(file);
+  while (count < threshold) {
+    const result = readImport(file)
 
-        path = result[1];
-        type = result[2];
-        if (path === null && type === null) {
-            break;
-        }
-
-        file = result[0];
-        const arr = imports.get(path) || [];
-        if (!arr.includes(type)) {
-            arr.push(type);
-            imports.set(path, arr);
-        }
-
-        count++;
+    path = result[1]
+    type = result[2]
+    if (path === null && type === null) {
+      break
     }
 
-    file = file.replace(/export(?!\s+declare)/g, "export declare");
-
-    if (count === threshold) {
-        console.warn(`Reached threshold of ${threshold} loops`);
+    file = result[0]
+    const arr = imports.get(path) || []
+    if (!arr.includes(type)) {
+      arr.push(type)
+      imports.set(path, arr)
     }
 
-    if (imports.size > 0) {
-        return writeImports(imports) + "\n" + file;
-    } else {
-        return file;
-    }
+    count++
+  }
+
+  file = file.replace(/export(?!\s+declare)/g, 'export declare')
+
+  if (count === threshold) {
+    console.warn(`Reached threshold of ${threshold} loops`)
+  }
+
+  if (imports.size > 0) {
+    return writeImports(imports) + '\n' + file
+  } else {
+    return file
+  }
 }
 
 module.exports = {
-    cleanFile,
-    cleanFolder
-};
+  cleanFile,
+  cleanFolder
+}

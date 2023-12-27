@@ -1,15 +1,15 @@
 {
-    "include": ["../../../../{{types}}/"],
-    "exclude": ["**/node_modules/**/*"],
-    "compilerOptions": {
-        "noEmitOnError": false,
+  "include": ["../../../../{{types}}/"],
+  "exclude": ["**/node_modules/**/*"],
+  "compilerOptions": {
+    "noEmitOnError": false,
 
-        "declaration": true,
-        "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
 
-        "target": "ESNext",
-        "module": "NodeNext",
-        "moduleDetection": "auto",
-        "moduleResolution": "NodeNext"
-    }
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleDetection": "auto",
+    "moduleResolution": "NodeNext"
+  }
 }

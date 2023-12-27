@@ -1,4 +1,4 @@
-const { cleanFile } = require("../src/func/clean");
+const { cleanFile } = require('../src/func/clean')
 
 const file = `import { something } from "file";
 
@@ -21,7 +21,7 @@ export function (obj: object) :
     | void { }
 
 export type string = typeof import("./file");
-`;
+`
 
 const cleanedFile = `import type { string, number } from "file";
 import type { SomeType, OtherType } from "../types/file";
@@ -47,16 +47,16 @@ export declare function (obj: object) :
     | void { }
 
 export declare type string = typeof import("./file");
-`;
+`
 
-describe("Cleaning one file", () => {
-    it("should clean it properly", () => {
-        const newFile = cleanFile(file);
-        expect(newFile).toEqual(cleanedFile);
-    });
+describe('Cleaning one file', () => {
+  it('should clean it properly', () => {
+    const newFile = cleanFile(file)
+    expect(newFile).toEqual(cleanedFile)
+  })
 
-    it("should return it as is", () => {
-        const newFile = cleanFile("function foo() { return 0 }");
-        expect(newFile).toEqual("function foo() { return 0 }");
-    });
-});
+  it('should return it as is', () => {
+    const newFile = cleanFile('function foo() { return 0 }')
+    expect(newFile).toEqual('function foo() { return 0 }')
+  })
+})
