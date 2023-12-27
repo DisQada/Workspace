@@ -1,14 +1,16 @@
 const { writeFileSync, statSync } = require("fs");
 const { resolve } = require("path");
-const { cleanFolder } = require("./func/clean");
+const { cleanFolder } = require("../src/func/clean");
 const { readFileSync } = require("fs");
 
+const encoding = "utf8";
 let folderName;
 
 const configPath = resolve("../../../docconfig.json");
-let configData = readFileSync(configPath);
+let configData = readFileSync(configPath, encoding);
 if (configData) {
-    configData = JSON.parse(configData.toString());
+    configData = JSON.parse(configData);
+    // @ts-ignore
     folderName = configData.types;
 } else {
     folderName = "types";
@@ -23,8 +25,9 @@ if (stats && stats.isDirectory()) {
             for (const pair of dataMap) {
                 const filePath = pair[0];
                 const fileData = pair[1];
-                writeFileSync(filePath, fileData);
+                writeFileSync(filePath, fileData, encoding);
             }
+            return;
         })
         .catch(console.error);
 }

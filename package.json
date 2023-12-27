@@ -4,8 +4,8 @@
     "version": "1.1.0",
     "description": "Generate types and docs with a click",
     "scripts": {
-        "config": "node ./src/config.js",
-        "clean": "node ./src/index.js",
+        "config": "node ./bin/config.js",
+        "clean": "node ./bin/clean.js",
         "build": "tsc -p ./config/tsconfig.json && npm run clean",
         "doc": "typedoc --options ./config/typedoc.json",
         "lint": "eslint . --fix",
