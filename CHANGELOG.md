@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/DisQada/TypeDoc/compare/v1.1.0...v1.2.0) (2023-12-27)
+
+
+### Features
+
+* Add "declare" to exported types ([e4576f6](https://github.com/DisQada/TypeDoc/commit/e4576f610d52ca1f63069a93d11beb41681f6a26))
+* Update npm script names ([588df0e](https://github.com/DisQada/TypeDoc/commit/588df0e3d24fc9307ac5d89009b31943d66f2c69))
+
 # [1.1.0](https://github.com/DisQada/TypeDoc/compare/v1.0.3...v1.1.0) (2023-11-29)
 
 ### Bug Fixes
