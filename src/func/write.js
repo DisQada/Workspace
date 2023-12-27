@@ -4,7 +4,7 @@
  * @returns {string | void} the type imports string
  */
 function writeImports(imports) {
-    if (!imports || imports.size === 0) {
+    if (imports.size === 0) {
         return;
     }
 
