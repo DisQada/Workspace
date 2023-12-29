@@ -1,7 +1,7 @@
 {
   "displayName": "TypeDoc",
   "name": "@disqada/typedoc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Generate types and docs with a click",
   "scripts": {
     "config": "node ./bin/config.js",

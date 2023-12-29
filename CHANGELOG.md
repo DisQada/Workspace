@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/DisQada/TypeDoc/compare/v1.2.0...v1.2.1) (2023-12-29)
+
+
+### Bug Fixes
+
+* Create "config" folder when not existing ([30501a5](https://github.com/DisQada/TypeDoc/commit/30501a56901b67f63df62cd9507e9110df9075d4))
+* Release without extra dependencies ([657d071](https://github.com/DisQada/TypeDoc/commit/657d07178e1afc8e9d6c2e5b222ec2dfa813e782))
+
 # [1.2.0](https://github.com/DisQada/TypeDoc/compare/v1.1.0...v1.2.0) (2023-12-27)
 
 
