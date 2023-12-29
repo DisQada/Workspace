@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { readFileSync, writeFileSync, existsSync, mkdirSync } = require('fs')
 const { resolve } = require('path')
 
 const encoding = 'utf8'
@@ -113,5 +113,16 @@ function readTemplateFile(fileName) {
  * @returns {void}
  */
 function writeConfigFile(fileName, data) {
-  writeFileSync(resolve(`./config/${fileName}.json`), data, encoding)
+  const path = `./config/${fileName}.json`
+
+  try {
+    writeFileSync(resolve(path), data, encoding)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      mkdirSync('./config')
+      writeFileSync(resolve(path), data, encoding)
+    } else {
+      throw err
+    }
+  }
 }
