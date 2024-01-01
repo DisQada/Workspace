@@ -21,6 +21,12 @@ describe('Reading file contents', () => {
   it('should return valid path and type', () => {
     const content = readImport('@param {import("./file").string} str')
     expect(content).toEqual(['@param {string} str', './file', 'string'])
+
+    const content2 = readImport("@param {import('./file').string} str")
+    expect(content2).toEqual(['@param {string} str', './file', 'string'])
+
+    const content3 = readImport('@param {import(`./file`).string} str')
+    expect(content3).toEqual(['@param {string} str', './file', 'string'])
   })
 
   it('should return valid path and type with space', () => {
