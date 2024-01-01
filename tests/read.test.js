@@ -19,46 +19,35 @@ describe('Reading folder paths', () => {
 
 describe('Reading file contents', () => {
   it('should return valid path and type', () => {
-    const content = readImport(`@param {import("./file").string} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {import("./file").string} str')
     expect(content).toEqual(['@param {string} str', './file', 'string'])
   })
 
   it('should return valid path and type with space', () => {
-    const content = readImport(`@param {import("./file").string } str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {import("./file").string } str')
     expect(content).toEqual(['@param {string } str', './file', 'string'])
   })
 
   it('should return valid path and type with ()', () => {
-    const content = readImport(`@param {(import("./file").string)} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {(import("./file").string)} str')
     expect(content).toEqual(['@param {(string)} str', './file', 'string'])
   })
 
   it('should return valid path and type with []', () => {
-    const content = readImport(`@param {import("./file").string[]} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {import("./file").string[]} str')
     expect(content).toEqual(['@param {string[]} str', './file', 'string'])
   })
 
   it('should return valid path and type with [any]', () => {
-    const content = readImport(`@param {import("./file").string[any]} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {import("./file").string[any]} str')
     expect(content).toEqual(['@param {string[any]} str', './file', 'string'])
   })
 
   it('should return valid path and type with tuple', () => {
     let content = readImport(
-      `@param {[import("./file").string, import("./file").number]} str`
+      '@param {[import("./file").string, import("./file").number]} str'
     )
 
-    // expect(content).toEqual(new Map([["./file", ["string", "number"]]]));
     expect(content).toEqual([
       '@param {[string, import("./file").number]} str',
       './file',
@@ -74,18 +63,14 @@ describe('Reading file contents', () => {
   })
 
   it('should return valid path and type with <any>', () => {
-    const content = readImport(`@param {import("./file").string<any>} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {import("./file").string<any>} str')
     expect(content).toEqual(['@param {string<any>} str', './file', 'string'])
   })
 
   it('should return valid path and type with Promise', () => {
-    const content = readImport(`@param {Promise<import("./file").string>} str`)
-
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
+    const content = readImport('@param {Promise<import("./file").string>} str')
     expect(content).toEqual([
-      `@param {Promise<string>} str`,
+      '@param {Promise<string>} str',
       './file',
       'string'
     ])
@@ -93,19 +78,18 @@ describe('Reading file contents', () => {
 
   it('should return valid path and type with Map', () => {
     let content = readImport(
-      `@param {Map<import("./file").string, import("./file").number>} str`
+      '@param {Map<import("./file").string, import("./file").number>} str'
     )
 
-    // expect(content).toEqual(new Map([["./file", ["string", "number"]]]));
     expect(content).toEqual([
-      `@param {Map<string, import("./file").number>} str`,
+      '@param {Map<string, import("./file").number>} str',
       './file',
       'string'
     ])
 
     content = readImport(content[0])
     expect(content).toEqual([
-      `@param {Map<string, number>} str`,
+      '@param {Map<string, number>} str',
       './file',
       'number'
     ])
@@ -113,10 +97,9 @@ describe('Reading file contents', () => {
 
   it('should return valid path and type with same path multiple imports', () => {
     let content = readImport(
-      `@param {import("./file").string|import("./file").number} str`
+      '@param {import("./file").string|import("./file").number} str'
     )
 
-    // expect(content).toEqual(new Map([["./file", ["string", "number"]]]));
     expect(content).toEqual([
       '@param {string|import("./file").number} str',
       './file',
@@ -129,27 +112,20 @@ describe('Reading file contents', () => {
 
   it('should return valid path and type with different path multiple imports', () => {
     let content = readImport(
-      `@param {import("./file1").string|import("./file2").number} str`
+      '@param {import("./file1").string|import("./file2").number} str'
     )
-    // expect(content).toEqual(
-    //     new Map([
-    //         ["./file1", ["string"]],
-    //         ["./file2", ["number"]]
-    //     ])
-    // );
     expect(content).toEqual([
-      `@param {string|import("./file2").number} str`,
+      '@param {string|import("./file2").number} str',
       './file1',
       'string'
     ])
 
     content = readImport(content[0])
-    expect(content).toEqual([`@param {string|number} str`, './file2', 'number'])
+    expect(content).toEqual(['@param {string|number} str', './file2', 'number'])
   })
 
   it('should return valid path and type with full imports', () => {
     const content = readImport('export type string = typeof import("./file");')
-    // expect(content).toEqual(new Map([["./file", ["string"]]]));
     expect(content).toEqual([
       'export type string = typeof import("./file");',
       null,
