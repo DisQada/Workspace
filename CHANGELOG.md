@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/DisQada/TypeDoc/compare/v1.3.1...v1.3.2) (2024-01-02)
+
+
+### Bug Fixes
+
+* **clean:** Ignore the declare of exporting imported types ([5d7e17b](https://github.com/DisQada/TypeDoc/commit/5d7e17b8717ee8553cecd32acbe1d574c78aa0c3))
+
 ## [1.3.1](https://github.com/DisQada/TypeDoc/compare/v1.3.0...v1.3.1) (2024-01-02)
 
 
