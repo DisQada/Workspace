@@ -22,6 +22,8 @@ export function (obj: object) :
 
 export type string = typeof import("./file");
 
+export type exports = number
+
 export = something;
 `
 
@@ -49,6 +51,8 @@ export declare function (obj: object) :
     | void { }
 
 export declare type string = typeof import("./file");
+
+export declare type exports = number
 
 export default something;
 `
