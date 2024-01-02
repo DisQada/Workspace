@@ -36,10 +36,10 @@ async function readFolder(folderPath) {
 
 /**
  * @param {string} str
- * @returns {[string, string | null, string | null]} [file, path, type]
+ * @returns {[string, string | null, string | null]} [data, path, type]
  */
 function readImport(str) {
-  let file = ''
+  let data = ''
 
   const bWord = /typeof import\(("|'|`)/
   const sWord = /import\(("|'|`)/ // NOTE: change the length value below if you change this
@@ -54,26 +54,26 @@ function readImport(str) {
 
   if (before !== -1 && before < start) {
     const breakIndex = str.search(/("|'|`)\)/) + 2
-    file += str.substring(0, breakIndex)
+    data += str.substring(0, breakIndex)
     str = str.substring(breakIndex)
 
     start = str.search(sWord)
     if (start === -1) {
-      return [file + str, null, null]
+      return [data + str, null, null]
     }
   }
 
-  file += str.substring(0, start)
+  data += str.substring(0, start)
   str = str.substring(start + 8 /** sWord.length */)
 
   const end = str.search(eWord)
   const path = str.substring(0, end)
 
   str = str.substring(end + 3 /** eWord.length */)
-  file += str
+  data += str
   const type = str.substring(0, getEndIndex(str))
 
-  return [file, path, type]
+  return [data, path, type]
 }
 
 /**

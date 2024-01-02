@@ -8,46 +8,46 @@ const { readFile } = require('fs/promises')
  * @async
  */
 async function cleanFolder(path) {
-  const fullPaths = await readFolder(path)
-  const files = await Promise.all(fullPaths.map((x) => readFile(x)))
+  const filePaths = await readFolder(path)
+  const filesData = await Promise.all(filePaths.map((x) => readFile(x)))
 
   const newFiles = new Map()
 
-  for (let i = 0; i < fullPaths.length; i++) {
-    let file = files[i].toString()
-    file = cleanFile(file, fullPaths[i])
-    newFiles.set(fullPaths[i], file)
+  for (let i = 0; i < filePaths.length; i++) {
+    let file = filesData[i].toString()
+    file = cleanFile(file, filePaths[i])
+    newFiles.set(filePaths[i], file)
   }
 
   return newFiles
 }
 
 /**
- * @param {string} file
+ * @param {string} data
  * @param {string} [path]
  * @returns {string}
  */
-function cleanFile(file, path) {
-  if (file.includes('import(')) {
-    file = cleanImports(file)
+function cleanFile(data, path) {
+  if (data.includes('import(')) {
+    data = cleanImports(data)
   }
 
-  file = file.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
-  file = file.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
-  file = file.replace(/export(?!s)(\s+=)/g, 'export default')
+  data = data.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
+  data = data.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
+  data = data.replace(/export(?!s)(\s+=)/g, 'export default')
 
   if (path?.endsWith('exports.d.ts')) {
-    file += '\nexport * from "./options";'
+    data += '\nexport * from "./options";'
   }
 
-  return file
+  return data
 }
 
 /**
- * @param {string} file
+ * @param {string} data
  * @returns {string}
  */
-function cleanImports(file) {
+function cleanImports(data) {
   const imports = new Map()
 
   let path
@@ -57,7 +57,7 @@ function cleanImports(file) {
   const threshold = 10000
 
   while (count < threshold) {
-    const result = readImport(file)
+    const result = readImport(data)
 
     path = result[1]
     type = result[2]
@@ -65,7 +65,7 @@ function cleanImports(file) {
       break
     }
 
-    file = result[0]
+    data = result[0]
     const arr = imports.get(path) || []
     if (!arr.includes(type)) {
       arr.push(type)
@@ -80,9 +80,9 @@ function cleanImports(file) {
   }
 
   if (imports.size > 0) {
-    return writeImports(imports) + '\n' + file
+    return writeImports(imports) + '\n' + data
   } else {
-    return file
+    return data
   }
 }
 
