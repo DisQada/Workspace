@@ -62,6 +62,7 @@ function cleanFile(file) {
     count++
   }
 
+  file = file.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
   file = file.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
   file = file.replace(/export(?!s)(\s+=)/g, 'export default')
 

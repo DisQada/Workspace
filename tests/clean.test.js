@@ -15,7 +15,7 @@ export enum Type3 = {
     other: import("../types/file").OtherType;
 };
 
-export function (obj: object) :
+export function (...args: number[][]) :
     | Promise<import("file").string | void>
     | string
     | void { }
@@ -45,7 +45,7 @@ export declare enum Type3 = {
     other: OtherType;
 };
 
-export declare function (obj: object) :
+export declare function (...args: number[]) :
     | Promise<string | void>
     | string
     | void { }
