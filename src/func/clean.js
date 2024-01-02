@@ -15,12 +15,16 @@ async function cleanFolder(path) {
 
   for (let i = 0; i < fullPaths.length; i++) {
     let file = files[i].toString()
-    if (!file || !file.includes('import(')) {
-      continue
+
+    if (file.includes('import(')) {
+      file = cleanFile(file)
     }
 
-    const newFile = cleanFile(file)
-    newFiles.set(fullPaths[i], newFile)
+    if (path.endsWith('exports.d.ts')) {
+      file += '\nexport * from "./options";'
+    }
+
+    newFiles.set(fullPaths[i], file)
   }
 
   return newFiles
