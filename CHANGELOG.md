@@ -1,3 +1,19 @@
+# [1.3.0](https://github.com/DisQada/TypeDoc/compare/v1.2.1...v1.3.0) (2024-01-02)
+
+
+### Bug Fixes
+
+* **clean:** Clean default exports ([88d302b](https://github.com/DisQada/TypeDoc/commit/88d302b5c80f164bff760bd3cfa1239990e859d0))
+* **clean:** Clean file even without imports ([7299ade](https://github.com/DisQada/TypeDoc/commit/7299ade2c06f26525aedef04a6b7bcaf1500056e))
+* **clean:** Ignore 'exports' words ([4428855](https://github.com/DisQada/TypeDoc/commit/44288559dfb3f998975bce2bc92db3cb1ae788b6))
+* **read:** Check for all string wrappers ([aaaa6f1](https://github.com/DisQada/TypeDoc/commit/aaaa6f1ddfd18fb8e78c07e73d4f47def635a4db))
+
+
+### Features
+
+* **clean:** Add export options line ([8ff0f3f](https://github.com/DisQada/TypeDoc/commit/8ff0f3f63fcc1cbc47199dd8eba7b1c5440e1a8a))
+* **clean:** Remove the extra brackets ([6eca839](https://github.com/DisQada/TypeDoc/commit/6eca839edd311fbcd4118cf52ff4a51471d9277d))
+
 ## [1.2.1](https://github.com/DisQada/TypeDoc/compare/v1.2.0...v1.2.1) (2023-12-29)
 
 
