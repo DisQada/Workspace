@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/DisQada/TypeDoc/compare/v1.3.0...v1.3.1) (2024-01-02)
+
+
+### Bug Fixes
+
+* **clean:** Check for other brackets ([e60b17e](https://github.com/DisQada/TypeDoc/commit/e60b17e574c64fd3faca1b69582c8ded04e6b430))
+
 # [1.3.0](https://github.com/DisQada/TypeDoc/compare/v1.2.1...v1.3.0) (2024-01-02)
 
 
