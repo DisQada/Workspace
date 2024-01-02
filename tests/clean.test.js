@@ -55,11 +55,12 @@ export declare type string = typeof import("./file");
 export declare type exports = number
 
 export default something;
-`
+
+export * from "./options";`
 
 describe('Cleaning one file', () => {
   it('should clean it properly', () => {
-    const newFile = cleanFile(file)
+    const newFile = cleanFile(file, 'exports.d.ts')
     expect(newFile).toEqual(cleanedFile)
   })
 
