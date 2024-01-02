@@ -27,7 +27,7 @@
   "includeVersion": true,
   "skipErrorChecking": true,
   "jsDocCompatibility": true,
-  "categorizeByGroup": false,
+  "categorizeByGroup": true,
 
   "navigationLinks": {
     "npm package": "https://www.npmjs.com/package/{{name}}"
