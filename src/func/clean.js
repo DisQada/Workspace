@@ -15,15 +15,7 @@ async function cleanFolder(path) {
 
   for (let i = 0; i < fullPaths.length; i++) {
     let file = files[i].toString()
-
-    if (file.includes('import(')) {
-      file = cleanFile(file)
-    }
-
-    if (path.endsWith('exports.d.ts')) {
-      file += '\nexport * from "./options";'
-    }
-
+    file = cleanFile(file, fullPaths[i])
     newFiles.set(fullPaths[i], file)
   }
 
@@ -32,9 +24,30 @@ async function cleanFolder(path) {
 
 /**
  * @param {string} file
+ * @param {string} [path]
  * @returns {string}
  */
-function cleanFile(file) {
+function cleanFile(file, path) {
+  if (file.includes('import(')) {
+    file = cleanImports(file)
+  }
+
+  file = file.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
+  file = file.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
+  file = file.replace(/export(?!s)(\s+=)/g, 'export default')
+
+  if (path?.endsWith('exports.d.ts')) {
+    file += '\nexport * from "./options";'
+  }
+
+  return file
+}
+
+/**
+ * @param {string} file
+ * @returns {string}
+ */
+function cleanImports(file) {
   const imports = new Map()
 
   let path
@@ -62,10 +75,6 @@ function cleanFile(file) {
     count++
   }
 
-  file = file.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
-  file = file.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
-  file = file.replace(/export(?!s)(\s+=)/g, 'export default')
-
   if (count === threshold) {
     console.warn(`Reached threshold of ${threshold} loops`)
   }
@@ -78,6 +87,7 @@ function cleanFile(file) {
 }
 
 module.exports = {
+  cleanImports,
   cleanFile,
   cleanFolder
 }
