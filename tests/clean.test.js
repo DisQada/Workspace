@@ -21,6 +21,8 @@ export function (obj: object) :
     | void { }
 
 export type string = typeof import("./file");
+
+export = something;
 `
 
 const cleanedFile = `import type { string, number } from "file";
@@ -47,6 +49,8 @@ export declare function (obj: object) :
     | void { }
 
 export declare type string = typeof import("./file");
+
+export default something;
 `
 
 describe('Cleaning one file', () => {
