@@ -34,7 +34,7 @@ function cleanFile(data, path) {
     /\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g,
     '...$1: $2'
   )
-  data = data.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
+  data = data.replace(/export(?!s)(?!\s+(declare|=|{))/g, 'export declare')
   data = data.replace(/export(?!s)(\s+=)/g, 'export default')
 
   if (path?.endsWith('exports.d.ts')) {

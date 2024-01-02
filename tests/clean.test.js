@@ -22,6 +22,9 @@ export function (...args: number[][], ...args2: Interface[Key][], ...args3: stri
 
 export type string = typeof import("./example/path");
 
+import type { string } from "example/path";
+export { string };
+
 export type exports = number
 
 export = something;
@@ -51,6 +54,9 @@ export declare function (...args: number[], ...args2: Interface[Key], ...args3: 
     | void { }
 
 export declare type string = typeof import("./example/path");
+
+import type { string } from "example/path";
+export { string };
 
 export declare type exports = number
 
