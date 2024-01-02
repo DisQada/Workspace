@@ -30,7 +30,10 @@ function cleanFile(data, path) {
     data = cleanImports(data)
   }
 
-  data = data.replace(/\.\.\.(\w+): (\w+)\[\]/g, '...$1: $2')
+  data = data.replace(
+    /\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g,
+    '...$1: $2'
+  )
   data = data.replace(/export(?!s)(?!\s+(declare|=))/g, 'export declare')
   data = data.replace(/export(?!s)(\s+=)/g, 'export default')
 

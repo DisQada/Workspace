@@ -15,7 +15,7 @@ export enum Type3 = {
     other: import("../types/example/path").OtherType;
 };
 
-export function (...args: number[][]) :
+export function (...args: number[][], ...args2: Interface[Key][], ...args3: string[][][]) :
     | Promise<import("example/path").string | void>
     | string
     | void { }
@@ -45,7 +45,7 @@ export declare enum Type3 = {
     other: OtherType;
 };
 
-export declare function (...args: number[]) :
+export declare function (...args: number[], ...args2: Interface[Key], ...args3: string[][]) :
     | Promise<string | void>
     | string
     | void { }
