@@ -9,14 +9,12 @@ const { readFile } = require('fs/promises')
  */
 async function cleanFolder(path) {
   const filePaths = await readFolder(path)
-  const filesData = await Promise.all(filePaths.map((x) => readFile(x)))
+  const filesData = await Promise.all(filePaths.map((x) => readFile(x, 'utf8')))
 
   const newFiles = new Map()
 
   for (let i = 0; i < filePaths.length; i++) {
-    let file = filesData[i].toString()
-    file = cleanFile(file, filePaths[i])
-    newFiles.set(filePaths[i], file)
+    newFiles.set(filePaths[i], cleanFile(filesData[i], filePaths[i]))
   }
 
   return newFiles
