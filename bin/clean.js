@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { writeFileSync, statSync } = require('fs')
 const { resolve } = require('path')
 const { cleanFolder } = require('../src/func/clean')

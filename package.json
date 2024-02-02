@@ -14,6 +14,10 @@
     "format": "prettier . --write --ignore-path .gitignore",
     "test": "npx jest"
   },
+  "bin": {
+    "config": "./bin/config.js",
+    "clean": "./bin/clean.js"
+  },
   "type": "commonjs",
   "files": [
     "src",
