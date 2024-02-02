@@ -8,7 +8,7 @@
 ![version](https://img.shields.io/npm/v/@disqada/typedoc.svg?label=latest&logo=npm)
 ![monthly downloads](https://img.shields.io/npm/dm/@disqada/typedoc.svg?logo=npm)
 
-![test](https://github.com/DisQada/TypeDoc/actions/workflows/test.yml/badge.svg)
+[![Test](https://github.com/DisQada/TypeDoc/actions/workflows/test.yml/badge.svg)](https://github.com/DisQada/TypeDoc/actions/workflows/test.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Table of Contents
@@ -17,7 +17,6 @@
   - [Badges](#badges)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
-  - [Learn](#learn)
   - [License](#license)
 - [Getting started](#getting-started)
   - [Configurations](#configurations)
@@ -27,10 +26,6 @@
 ## About
 
 This tool is used to generate both declarations and documentations with couple of clicks.
-
-## Learn
-
-Check the [Getting started](#getting-started) guide for first time usage.
 
 ## License
 
