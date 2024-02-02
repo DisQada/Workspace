@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const { readFileSync, writeFileSync, existsSync, mkdirSync } = require('fs')
-const { resolve } = require('path')
+import { existsSync, mkdirSync } from 'fs'
+import { readFile, writeFile } from 'fs/promises'
+import { resolve } from 'path'
 
 const encoding = 'utf8'
 
@@ -10,35 +11,36 @@ const configPath = resolve('../../../docconfig.json')
 let configData
 
 if (!existsSync(configPath)) {
-  const data = readTemplateFile('docconfig')
-  writeFileSync(configPath, data, encoding)
+  const data = await readTemplateFile('docconfig')
+  await writeFile(configPath, data, encoding)
   configData = JSON.parse(data.toString())
 } else {
-  configData = JSON.parse(readFileSync(configPath, encoding))
+  const data = await readFile(configPath, encoding)
+  configData = JSON.parse(data)
 }
 
 //
 
-let tsData = readTemplateFile('tsconfig')
+let tsData = await readTemplateFile('tsconfig')
 if (tsData) {
   tsData = fillData(tsData, 'root', 'src')
   tsData = fillData(tsData, 'types', 'types')
 
-  writeConfigFile('tsconfig', tsData)
+  await writeConfigFile('tsconfig', tsData)
 }
 
 //
 
-let tsDocData = readTemplateFile('tsconfig.doc')
+let tsDocData = await readTemplateFile('tsconfig.doc')
 if (tsDocData) {
   tsDocData = fillData(tsDocData, 'types', 'types')
 
-  writeConfigFile('tsconfig.doc', tsDocData)
+  await writeConfigFile('tsconfig.doc', tsDocData)
 }
 
 //
 
-let typedocData = readTemplateFile('typedoc')
+let typedocData = await readTemplateFile('typedoc')
 if (typedocData) {
   typedocData = fillData(typedocData, 'root', 'src')
   typedocData = fillData(typedocData, 'types', 'types')
@@ -48,7 +50,7 @@ if (typedocData) {
 
   const packagePath = resolve('../../../package.json')
   /** @type {object} */
-  const packageData = JSON.parse(readFileSync(packagePath, encoding))
+  const packageData = JSON.parse(await readFile(packagePath, encoding))
 
   const arg1 = 'name'
   const regex1 = new RegExp('{{' + arg1 + '}}', 'g')
@@ -80,7 +82,7 @@ if (typedocData) {
 
   //
 
-  writeConfigFile('typedoc', typedocData)
+  await writeConfigFile('typedoc', typedocData)
 }
 
 /**
@@ -103,26 +105,27 @@ function fillData(data, arg, defaultValue) {
 /**
  * Read config template file and convert it to string
  * @param {string} fileName
- * @returns {string}
+ * @returns {Promise<string>}
  */
-function readTemplateFile(fileName) {
-  return readFileSync(resolve(`./template/${fileName}.json`), encoding)
+async function readTemplateFile(fileName) {
+  return await readFile(resolve(`./template/${fileName}.json`), encoding)
 }
+
 /**
  * Write config data to a file
  * @param {string} fileName
  * @param {string} data
- * @returns {void}
+ * @returns {Promise<void>}
  */
-function writeConfigFile(fileName, data) {
+async function writeConfigFile(fileName, data) {
   const path = `./config/${fileName}.json`
 
   try {
-    writeFileSync(resolve(path), data, encoding)
+    await writeFile(resolve(path), data, encoding)
   } catch (err) {
     if (err.code === 'ENOENT') {
       mkdirSync('./config')
-      writeFileSync(resolve(path), data, encoding)
+      await writeFile(resolve(path), data, encoding)
     } else {
       throw err
     }

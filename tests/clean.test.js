@@ -1,4 +1,4 @@
-const { cleanFile } = require('../src/func/clean')
+import { cleanFile } from '../src/func/clean.js'
 
 const fileData = `import { something } from "example/path";
 

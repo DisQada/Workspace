@@ -1,5 +1,5 @@
-const { readFolder, readImport } = require('../src/func/read')
-const { sep, isAbsolute } = require('path')
+import { isAbsolute, sep } from 'path'
+import { readFolder, readImport } from '../src/func/read.js'
 
 describe('Reading folder paths', () => {
   it('should return expected paths', async () => {

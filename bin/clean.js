@@ -1,35 +1,29 @@
 #!/usr/bin/env node
 
-const { writeFileSync, statSync } = require('fs')
-const { resolve } = require('path')
-const { cleanFolder } = require('../src/func/clean')
-const { readFileSync } = require('fs')
+import { readFile, stat, writeFile } from 'fs/promises'
+import { resolve } from 'path'
+import { cleanFolder } from '../src/func/clean.js'
 
 const encoding = 'utf8'
 let folderName
 
 const configPath = resolve('../../../docconfig.json')
-let configData = readFileSync(configPath, encoding)
+const configData = await readFile(configPath, encoding)
 if (configData) {
-  configData = JSON.parse(configData)
-  // @ts-ignore
-  folderName = configData.types
+  const data = JSON.parse(configData)
+  folderName = data.types
 } else {
   folderName = 'types'
 }
 
 const path = resolve(`../../../${folderName}`)
-const stats = statSync(path)
+const stats = await stat(path)
 
 if (stats && stats.isDirectory()) {
-  cleanFolder(path)
-    .then((dataMap) => {
-      for (const pair of dataMap) {
-        const filePath = pair[0]
-        const fileData = pair[1]
-        writeFileSync(filePath, fileData, encoding)
-      }
-      return
-    })
-    .catch(console.error)
+  const fileMap = await cleanFolder(path)
+  for (const file of fileMap) {
+    const path = file[0]
+    const data = file[1]
+    await writeFile(path, data, encoding)
+  }
 }

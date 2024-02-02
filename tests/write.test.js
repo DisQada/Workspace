@@ -1,4 +1,4 @@
-const { writeImports } = require('../src/func/write')
+import { writeImports } from '../src/func/write.js'
 
 describe('Converting types map to import', () => {
   it('should return valid string', () => {
