@@ -15,5 +15,9 @@
     "plugin:promise/recommended"
   ],
   "plugins": ["jsdoc", "import", "promise"],
-  "rules": {}
+  "rules": {
+    "jsdoc/require-param-description": "off",
+    "jsdoc/require-property-description": "off",
+    "jsdoc/require-returns-description": "off"
+  }
 }

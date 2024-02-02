@@ -2,40 +2,76 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSaveMode": "file",
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
   "editor.trimAutoWhitespace": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": "always",
-    "source.organizeImports": "always"
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
   },
 
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.formatOnSaveMode": "file",
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.trimAutoWhitespace": true,
-
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "editor.unicodeHighlight.invisibleCharacters": false,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.wordWrap": "off",
-    "editor.quickSuggestions": {
-      "comments": "off",
-      "strings": "off",
-      "other": "off"
-    },
-
-    "cSpell.fixSpellingWithRenameProvider": true,
-    "cSpell.advanced.feature.useReferenceProviderWithRename": true,
-    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
+    "editor.trimAutoWhitespace": true
   },
+  "markdown.replaceSmartQuotes": true,
 
   "javascript.suggest.jsdoc.generateReturns": true,
   "javascript.suggest.completeJSDocs": true,
   "javascript.suggest.autoImports": true,
-
   "js/ts.implicitProjectConfig.checkJs": true,
 
-  "markdown.replaceSmartQuotes": true
+  "todo-tree.highlights.enabled": true,
+  "todo-tree.tree.showCountsInTree": true,
+  "todo-tree.general.showActivityBarBadge": true,
+  "todo-tree.tree.labelFormat": "${after}",
+  "todo-tree.tree.tooltipFormat": "line=${line}, column=${column}",
+  "todo-tree.filtering.includeGlobs": ["**/*.{js,cjs,mjs,jsx,ts,txt}"],
+  "todo-tree.highlights.defaultHighlight": {
+    "gutterIcon": true,
+    "type": "text-and-comment",
+    "foreground": "#ffffff",
+    "opacity": 0
+  },
+  "todo-tree.general.tags": [
+    "LOCK",
+    "BUG",
+    "FIX",
+    "TODO",
+    "BOOKMARK",
+    "NOTE",
+    "///"
+  ],
+  "todo-tree.general.tagGroups": {
+    "FIX": ["FIXME", "FIXIT"]
+  },
+  "todo-tree.highlights.customHighlight": {
+    "LOCK": {
+      "icon": "lock",
+      "foreground": "#00ff88"
+    },
+    "BUG": {
+      "icon": "bug",
+      "foreground": "#ff0000"
+    },
+    "FIX": {
+      "icon": "tools",
+      "foreground": "#ff8800"
+    },
+    "TODO": {
+      "icon": "check-circle",
+      "foreground": "#ffff00"
+    },
+    "BOOKMARK": {
+      "icon": "bookmark"
+    },
+    "NOTE": {
+      "icon": "comment",
+      "hideFromTree": true
+    },
+    "///": {
+      "foreground": "#3d4e3c",
+      "hideFromTree": true
+    }
+  }
 }
