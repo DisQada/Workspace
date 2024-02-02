@@ -17,7 +17,6 @@
   "files": [
     "src",
     "bin",
-    "config",
     "template",
     "CHANGELOG.md",
     "README.md",
