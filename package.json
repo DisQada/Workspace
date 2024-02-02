@@ -12,7 +12,7 @@
     "docs": "typedoc --options ./config/typedoc.json",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier . --write --ignore-path .gitignore",
-    "test": "npx jest"
+    "test": "npx mocha ./test/**/*.test.js"
   },
   "bin": {
     "config": "./bin/config.js",
@@ -63,12 +63,12 @@
     "typescript": "5.2.x"
   },
   "devDependencies": {
-    "@types/jest": "*",
     "eslint": "*",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
     "eslint-plugin-jsdoc": "*",
+    "eslint-plugin-mocha": "*",
     "eslint-plugin-promise": "*",
+    "mocha": "^10.2.0",
     "prettier": "*"
   }
 }

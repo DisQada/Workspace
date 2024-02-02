@@ -1,7 +1,7 @@
 {
   "root": true,
   "env": {
-    "jest": true,
+    "mocha": true,
     "es6": true,
     "node": true
   },
@@ -11,10 +11,12 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:jest/recommended",
+    "plugin:mocha/recommended",
     "plugin:import/recommended",
     "plugin:promise/recommended"
   ],
-  "plugins": ["jest", "import", "promise"],
-  "rules": {}
+  "plugins": ["mocha", "import", "promise"],
+  "rules": {
+    "mocha/max-top-level-suites": "off"
+  }
 }

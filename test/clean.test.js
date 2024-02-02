@@ -1,3 +1,4 @@
+import assert from 'assert'
 import { cleanFile } from '../src/func/clean.js'
 
 const fileData = `import { something } from "example/path";
@@ -64,14 +65,14 @@ export default something;
 
 export * from "./options";`
 
-describe('Cleaning one file', () => {
-  it('should clean it properly', () => {
+describe('Cleaning one file', function () {
+  it('should clean it properly', function () {
     const newFile = cleanFile(fileData, 'exports.d.ts')
-    expect(newFile).toEqual(cleanedFile)
+    assert.strictEqual(newFile, cleanedFile)
   })
 
-  it('should return it as is', () => {
+  it('should return it as is', function () {
     const newFile = cleanFile('function foo() { return 0 }')
-    expect(newFile).toEqual('function foo() { return 0 }')
+    assert.strictEqual(newFile, 'function foo() { return 0 }')
   })
 })
