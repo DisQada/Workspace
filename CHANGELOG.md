@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/DisQada/TypeDoc/compare/v1.3.2...v1.4.0) (2024-02-03)
+
+
+### Bug Fixes
+
+* **package.json:** Exclude config folder ([b7a1169](https://github.com/DisQada/TypeDoc/commit/b7a1169efdf6e1ef1f56b5e6bf255965003c321a))
+* **package.json:** Fix postinstall script ([552a340](https://github.com/DisQada/TypeDoc/commit/552a3401c0ed2da3e4dcc117b79d77a8291c1de4))
+
+
+### Features
+
+* Declare js files in bin folder as binary executables ([02dd3df](https://github.com/DisQada/TypeDoc/commit/02dd3df490af00b6fa09a8f596d443dab06927ac))
+* **package.json:** Run the config file upon install or update ([b3d57ac](https://github.com/DisQada/TypeDoc/commit/b3d57ac5de89d4e4070ec554d3bf41853851b335))
+
 ## [1.3.2](https://github.com/DisQada/TypeDoc/compare/v1.3.1...v1.3.2) (2024-01-02)
 
 
