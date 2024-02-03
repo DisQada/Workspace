@@ -1,6 +1,6 @@
 {
-  "displayName": "TypeDoc",
-  "name": "@disqada/typedoc",
+  "displayName": "Workspace",
+  "name": "@disqada/workspace",
   "version": "1.4.0",
   "description": "Generate types and docs with a click",
   "scripts": {
@@ -30,13 +30,13 @@
     "README.md",
     "LICENSE.txt"
   ],
-  "homepage": "https://disqada.github.io/TypeDoc",
+  "homepage": "https://disqada.github.io/Workspace",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DisQada/TypeDoc.git"
+    "url": "https://github.com/DisQada/Workspace.git"
   },
   "bugs": {
-    "url": "https://github.com/DisQada/TypeDoc/issues"
+    "url": "https://github.com/DisQada/Workspace/issues"
   },
   "keywords": [
     "types",

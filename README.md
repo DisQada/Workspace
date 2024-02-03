@@ -1,19 +1,19 @@
-# TypeDoc
+# Workspace
 
 ## Badges
 
-[![github](https://img.shields.io/badge/DisQada/TypeDoc-000000?logo=github&logoColor=white)](https://www.github.com/DisQada/TypeDoc)
-[![npm](https://img.shields.io/badge/@disqada/typedoc-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/@disqada/typedoc)
+[![github](https://img.shields.io/badge/DisQada/Workspace-000000?logo=github&logoColor=white)](https://www.github.com/DisQada/Workspace)
+[![npm](https://img.shields.io/badge/@disqada/workspace-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/@disqada/workspace)
 
-![version](https://img.shields.io/npm/v/@disqada/typedoc.svg?label=latest&logo=npm)
-![monthly downloads](https://img.shields.io/npm/dm/@disqada/typedoc.svg?logo=npm)
+![version](https://img.shields.io/npm/v/@disqada/workspace.svg?label=latest&logo=npm)
+![monthly downloads](https://img.shields.io/npm/dm/@disqada/workspace.svg?logo=npm)
 
-[![Test](https://github.com/DisQada/TypeDoc/actions/workflows/test.yml/badge.svg)](https://github.com/DisQada/TypeDoc/actions/workflows/test.yml)
+[![Test](https://github.com/DisQada/Workspace/actions/workflows/test.yml/badge.svg)](https://github.com/DisQada/Workspace/actions/workflows/test.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Table of Contents
 
-- [TypeDoc](#typedoc)
+- [Workspace](#workspace)
   - [Badges](#badges)
   - [Table of Contents](#table-of-contents)
   - [About](#about)
@@ -65,16 +65,16 @@ Below are the available npm scripts:
 First thing to do is to run the following command to install all the necessary dependencies
 
 ```bash
-npm explore @disqada/typedoc -- npm run setup
+npm explore @disqada/workspace -- npm run setup
 ```
 
 You'll most likely have the following scripts, use the `setup` script on initialisation and every time you update the configuration file, then use the `types` and `doc/docs` scripts for generating declarations and documentation
 
 ```json
 "scripts": {
-    "config": "npm explore @disqada/typedoc -- npm run config",
-    "types": "npm explore @disqada/typedoc -- npm run types",
-    "docs": "npm explore @disqada/typedoc -- npm run docs"
+    "config": "npm explore @disqada/workspace -- npm run config",
+    "types": "npm explore @disqada/workspace -- npm run types",
+    "docs": "npm explore @disqada/workspace -- npm run docs"
 }
 ```
 
@@ -82,7 +82,7 @@ If you're constantly changing the configurations, you can make one script that r
 
 ```json
 "scripts": {
-    "types": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run types",
-    "docs": "npm explore @disqada/typedoc -- npm run config && npm explore @disqada/typedoc -- npm run docs"
+    "types": "npm explore @disqada/workspace -- npm run config && npm explore @disqada/workspace -- npm run types",
+    "docs": "npm explore @disqada/workspace -- npm run config && npm explore @disqada/workspace -- npm run docs"
 }
 ```
