@@ -4,7 +4,7 @@
   "version": "1.3.2",
   "description": "Generate types and docs with a click",
   "scripts": {
-    "postinstall": "node ./scripts/config.js",
+    "postinstall": "npm run config",
     "config": "node ./bin/config.js",
     "clean": "node ./bin/clean.js",
     "types": "tsc -p ./config/tsconfig.json && npm run clean",
