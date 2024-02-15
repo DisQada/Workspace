@@ -1,5 +1,5 @@
-import { readdir, stat } from 'fs/promises'
-import { resolve } from 'path'
+const { readdir, stat } = require('fs/promises')
+const { resolve } = require('path')
 
 /**
  * Read all the files in the folder and it's subfolders as full paths.
@@ -7,7 +7,7 @@ import { resolve } from 'path'
  * @returns {Promise<string[]>} full file paths
  * @async
  */
-export async function readFolder(folderPath) {
+async function readFolder(folderPath) {
   const cwd = process.cwd()
   const files = []
 
@@ -38,7 +38,7 @@ export async function readFolder(folderPath) {
  * @param {string} str
  * @returns {[string, string | null, string | null]} [data, path, type]
  */
-export function readImport(str) {
+function readImport(str) {
   let data = ''
 
   const bWord = /typeof import\(("|'|`)/
@@ -91,4 +91,9 @@ function getEndIndex(str) {
   }
 
   throw new Error("Shouldn't be here")
+}
+
+module.exports = {
+  readFolder,
+  readImport
 }

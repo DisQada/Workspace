@@ -1,5 +1,5 @@
-import assert from 'assert'
-import { cleanFile } from '../src/func/clean.js'
+const assert = require('assert')
+const { cleanFile } = require('../src/func/clean.js')
 
 const fileData = `import { something } from "example/path";
 

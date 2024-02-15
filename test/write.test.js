@@ -1,5 +1,5 @@
-import assert from 'assert'
-import { writeImports } from '../src/func/write.js'
+const assert = require('assert')
+const { writeImports } = require('../src/func/write.js')
 
 describe('Converting types map to import', function () {
   it('should return valid string', function () {

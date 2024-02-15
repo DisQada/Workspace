@@ -1,13 +1,13 @@
-import { readFile } from 'fs/promises'
-import { readFolder, readImport } from './read.js'
-import { writeImports } from './write.js'
+const { readFile } = require('fs/promises')
+const { readFolder, readImport } = require('./read.js')
+const { writeImports } = require('./write.js')
 
 /**
  * @param {string} path
  * @returns {Promise<Map<string, string>>} Map<fileAbsolutePath, fileData>
  * @async
  */
-export async function cleanFolder(path) {
+async function cleanFolder(path) {
   const filePaths = await readFolder(path)
   const filesData = await Promise.all(filePaths.map((x) => readFile(x, 'utf8')))
 
@@ -25,7 +25,7 @@ export async function cleanFolder(path) {
  * @param {string} [path]
  * @returns {string}
  */
-export function cleanFile(data, path) {
+function cleanFile(data, path) {
   if (data.includes('import(')) {
     data = cleanImports(data)
   }
@@ -48,7 +48,7 @@ export function cleanFile(data, path) {
  * @param {string} data
  * @returns {string}
  */
-export function cleanImports(data) {
+function cleanImports(data) {
   const imports = new Map()
 
   let path
@@ -85,4 +85,10 @@ export function cleanImports(data) {
   } else {
     return data
   }
+}
+
+module.exports = {
+  cleanFolder,
+  cleanFile,
+  cleanImports
 }

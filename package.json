@@ -18,10 +18,7 @@
     "config": "./bin/config.js",
     "clean": "./bin/clean.js"
   },
-  "type": "module",
-  "engines": {
-    "node": ">=13.2.0"
-  },
+  "type": "commonjs",
   "files": [
     "src",
     "bin",

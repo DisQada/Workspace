@@ -3,7 +3,7 @@
  * @param {Map<string, string[]>} imports imports data as <path, type[]>
  * @returns {string | void} the type imports string
  */
-export function writeImports(imports) {
+function writeImports(imports) {
   if (imports.size === 0) {
     return
   }
@@ -17,4 +17,8 @@ export function writeImports(imports) {
   }
 
   return lines
+}
+
+module.exports = {
+  writeImports
 }

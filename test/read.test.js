@@ -1,6 +1,6 @@
-import assert from 'assert'
-import { isAbsolute, sep } from 'path'
-import { readFolder, readImport } from '../src/func/read.js'
+const assert = require('assert')
+const { isAbsolute, sep } = require('path')
+const { readFolder, readImport } = require('../src/func/read.js')
 
 describe('Reading folder paths', function () {
   it('should return expected paths', async function () {
