@@ -8,7 +8,7 @@ const encoding = 'utf8'
 let folderName
 
 async function run() {
-  const configPath = resolve('../../../docconfig.json')
+  const configPath = resolve('../../../workspace.json')
   const configData = await readFile(configPath, encoding)
   if (configData) {
     const data = JSON.parse(configData)

@@ -6,13 +6,13 @@ const { resolve } = require('path')
 
 const encoding = 'utf8'
 
-const configPath = resolve('../../../docconfig.json')
+const configPath = resolve('../../../workspace.json')
 /** @type {string} */
 let configData
 
 async function run() {
   if (!existsSync(configPath)) {
-    const data = await readTemplateFile('docconfig')
+    const data = await readTemplateFile('workspace')
     await writeFile(configPath, data, encoding)
     configData = JSON.parse(data.toString())
   } else {

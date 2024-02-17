@@ -38,7 +38,7 @@ See the [LICENSE](LICENSE.txt) file for more information.
 
 ## Configurations
 
-Add the file `docconfig.json` to your project, below a table of all possible configurations that can be used.
+Add the file `workspace.json` to your project, below a table of all possible configurations that can be used.
 
 | Property | Type   | Default value | Description                            |
 | -------- | ------ | ------------- | -------------------------------------- |
