@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier . --write --ignore-path .gitignore",
-    "test": "npx mocha ./test/**/*.test.js"
+    "test": "mocha ./test/**/*.test.js"
   },
   "bin": {
     "workspace": "./bin/workspace.js"
@@ -59,7 +59,7 @@
     "eslint": "*",
     "eslint-plugin-import": "*",
     "eslint-plugin-jsdoc": "*",
-    "eslint-plugin-mocha": "*",
+    "eslint-plugin-mocha": "^10.2.0",
     "eslint-plugin-promise": "*",
     "mocha": "^10.2.0",
     "prettier": "*"

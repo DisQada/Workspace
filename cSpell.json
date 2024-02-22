@@ -2,12 +2,6 @@
   "caseSensitive": true,
   "useGitignore": true,
   "language": "en-GB",
-  "files": [
-    "./src/**/*",
-    "./tests/**/*",
-    "./bin/**/*",
-    "./config/**/*",
-    "README.md"
-  ],
-  "words": ["disqada", "mxssfd", "Qada"]
+  "files": ["./{cli,test,bin,template,config}/**/*", "*.md"],
+  "words": ["disqada", "mxssfd", "DisQada"]
 }
