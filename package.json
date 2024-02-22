@@ -20,7 +20,7 @@
   },
   "type": "commonjs",
   "files": [
-    "src",
+    "cli",
     "bin",
     "template",
     "CHANGELOG.md",

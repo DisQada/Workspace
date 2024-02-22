@@ -1,20 +1,20 @@
 const assert = require('assert')
 const { isAbsolute, sep } = require('path')
-const { readFolder, readImport } = require('../src/func/read.js')
+const { readFolder, readImport } = require('../cli/func/read.js')
 
 describe('Reading folder paths', function () {
   it('should return expected paths', async function () {
-    const paths = await readFolder('src')
+    const paths = await readFolder('cli')
     assert.deepStrictEqual(
       paths,
       ['func/clean.js', 'func/read.js', 'func/write.js'].map((subPath) =>
-        (process.cwd() + '/src/' + subPath).replace(/\//g, sep)
+        (process.cwd() + '/cli/' + subPath).replace(/\//g, sep)
       )
     )
   })
 
   it('should return absolute paths', async function () {
-    const paths = await readFolder('src')
+    const paths = await readFolder('cli')
     assert.ok(paths.every((x) => isAbsolute(x)))
   })
 })
