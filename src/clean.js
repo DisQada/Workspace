@@ -1,14 +1,16 @@
-#!/usr/bin/env node
-
 const { readFile, stat, writeFile } = require('fs/promises')
 const { resolve } = require('path')
-const { cleanFolder } = require('../src/func/clean.js')
+const { cleanFolder } = require('./func/clean.js')
 
-const encoding = 'utf8'
-let folderName
+/**
+ * @param {object} options
+ * @param {NodeJS.BufferEncoding} options.encoding
+ * @param {string} options.configPath
+ * @async
+ */
+async function run({ encoding = 'utf8', configPath }) {
+  let folderName
 
-async function run() {
-  const configPath = resolve('../../../workspace.json')
   const configData = await readFile(configPath, encoding)
   if (configData) {
     const data = JSON.parse(configData)
@@ -17,11 +19,11 @@ async function run() {
     folderName = 'types'
   }
 
-  const path = resolve(`../../../${folderName}`)
-  const stats = await stat(path)
+  const typesPath = resolve(process.cwd(), folderName)
+  const stats = await stat(typesPath)
 
   if (stats && stats.isDirectory()) {
-    const fileMap = await cleanFolder(path)
+    const fileMap = await cleanFolder(typesPath)
     for (const file of fileMap) {
       const path = file[0]
       const data = file[1]
@@ -30,4 +32,4 @@ async function run() {
   }
 }
 
-run().catch(console.error)
+module.exports = run

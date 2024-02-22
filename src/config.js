@@ -1,16 +1,19 @@
-#!/usr/bin/env node
-
 const { existsSync, mkdirSync } = require('fs')
 const { readFile, writeFile } = require('fs/promises')
-const { resolve } = require('path')
+const { relative, resolve } = require('path')
 
-const encoding = 'utf8'
+/**
+ * @param {object} options
+ * @param {NodeJS.BufferEncoding} options.encoding
+ * @param {string} options.configPath
+ * @async
+ */
+async function run({ encoding = 'utf8', configPath }) {
+  const relativePath = relative(process.cwd(), __dirname)
 
-const configPath = resolve('../../../workspace.json')
-/** @type {string} */
-let configData
+  /** @type {string} */
+  let configData
 
-async function run() {
   if (!existsSync(configPath)) {
     const data = await readTemplateFile('workspace')
     await writeFile(configPath, data, encoding)
@@ -49,7 +52,7 @@ async function run() {
 
     //
 
-    const packagePath = resolve('../../../package.json')
+    const packagePath = resolve(process.cwd(), 'package.json')
     /** @type {object} */
     const packageData = JSON.parse(await readFile(packagePath, encoding))
 
@@ -104,12 +107,13 @@ async function run() {
   }
 
   /**
-   * Read config template file and convert it to string
+   * Read config template file
    * @param {string} fileName
-   * @returns {Promise<string>}
+   * @returns {Promise<string>} config template file data
    */
   async function readTemplateFile(fileName) {
-    return await readFile(resolve(`./template/${fileName}.json`), encoding)
+    const p = resolve(relativePath, `../template/${fileName}.json`)
+    return await readFile(p, encoding)
   }
 
   /**
@@ -119,14 +123,14 @@ async function run() {
    * @returns {Promise<void>}
    */
   async function writeConfigFile(fileName, data) {
-    const path = `./config/${fileName}.json`
+    const p = resolve(relativePath, `../config/${fileName}.json`)
 
     try {
-      await writeFile(resolve(path), data, encoding)
+      await writeFile(p, data, encoding)
     } catch (err) {
       if (err.code === 'ENOENT') {
-        mkdirSync('./config')
-        await writeFile(resolve(path), data, encoding)
+        mkdirSync(resolve(relativePath, '../config'))
+        await writeFile(p, data, encoding)
       } else {
         throw err
       }
@@ -134,4 +138,4 @@ async function run() {
   }
 }
 
-run().catch(console.error)
+module.exports = run
