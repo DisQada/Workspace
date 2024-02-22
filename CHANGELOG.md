@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/DisQada/Workspace/compare/v1.5.0...v1.5.1) (2024-02-22)
+
+
+### Bug Fixes
+
+* Include Node.js types with dev dependencies ([c9e0f6f](https://github.com/DisQada/Workspace/commit/c9e0f6f6efc2f72f8c6032480a1f6ed253c4938d))
+
 # [1.5.0](https://github.com/DisQada/Workspace/compare/v1.4.0...v1.5.0) (2024-02-22)
 
 

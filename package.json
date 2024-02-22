@@ -1,7 +1,7 @@
 {
   "displayName": "Workspace",
   "name": "@disqada/workspace",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Generate types and docs with a click",
   "scripts": {
     "lint": "eslint . --fix --ignore-path .gitignore",
