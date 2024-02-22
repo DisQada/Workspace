@@ -4,19 +4,12 @@
   "version": "1.4.0",
   "description": "Generate types and docs with a click",
   "scripts": {
-    "postinstall": "npm run config",
-    "config": "node ./bin/config.js",
-    "clean": "node ./bin/clean.js",
-    "types": "tsc -p ./config/tsconfig.json && npm run clean",
-    "doc": "typedoc --options ./config/typedoc.json",
-    "docs": "typedoc --options ./config/typedoc.json",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier . --write --ignore-path .gitignore",
     "test": "npx mocha ./test/**/*.test.js"
   },
   "bin": {
-    "config": "./bin/config.js",
-    "clean": "./bin/clean.js"
+    "workspace": "./bin/workspace.js"
   },
   "type": "commonjs",
   "files": [
@@ -52,6 +45,9 @@
   },
   "contributors": [],
   "license": "Apache-2.0",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
   "peerDependencies": {
     "@mxssfd/typedoc-theme": "1.1.x",
     "typedoc": "0.25.x",
