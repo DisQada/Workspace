@@ -7,7 +7,13 @@ describe('Reading folder paths', function () {
     const paths = await readFolder('cli')
     assert.deepStrictEqual(
       paths,
-      ['func/clean.js', 'func/read.js', 'func/write.js'].map((subPath) =>
+      [
+        'clean.js',
+        'config.js',
+        'func/clean.js',
+        'func/read.js',
+        'func/write.js'
+      ].map((subPath) =>
         (process.cwd() + '/cli/' + subPath).replace(/\//g, sep)
       )
     )
