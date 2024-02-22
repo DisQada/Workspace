@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/DisQada/Workspace/compare/v1.4.0...v1.5.0) (2024-02-22)
+
+
+### Features
+
+* Add package level binary file ([d0dcde1](https://github.com/DisQada/Workspace/commit/d0dcde1ac582697d3a22d33a40e3208280b0ae3e))
+
+
+### Reverts
+
+* Changes JS type back to CommonJS ([00e30f1](https://github.com/DisQada/Workspace/commit/00e30f1dc6922acb8c33b010a4e30d2f255c5c0e))
+
 # [1.4.0](https://github.com/DisQada/TypeDoc/compare/v1.3.2...v1.4.0) (2024-02-03)
 
 
