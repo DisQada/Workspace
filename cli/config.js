@@ -1,6 +1,9 @@
 import { existsSync, mkdirSync } from 'fs'
 import { readFile, writeFile } from 'fs/promises'
-import { relative, resolve } from 'path'
+import { dirname, relative, resolve } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * @param {object} options
