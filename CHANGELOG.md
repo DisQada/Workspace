@@ -1,3 +1,11 @@
+## [1.5.2](https://github.com/DisQada/Workspace/compare/v1.5.1...v1.5.2) (2024-08-20)
+
+
+### Bug Fixes
+
+* تحديث مصدر مخطط ملف إعدادات الأداة ([61e42c5](https://github.com/DisQada/Workspace/commit/61e42c5327b17eca3ce3db139b4a04da6b0d8c8f))
+* تعريف متغير مسار الملف ([a564c63](https://github.com/DisQada/Workspace/commit/a564c63f2b0fbfaa790da5dcf9ac91bfe9618850))
+
 ## [1.5.1](https://github.com/DisQada/Workspace/compare/v1.5.0...v1.5.1) (2024-02-22)
 
 ### Bug Fixes
