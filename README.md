@@ -18,10 +18,11 @@
   - [Table of Contents](#table-of-contents)
   - [About](#about)
   - [License](#license)
-- [Getting started](#getting-started)
+- [Getting Started](#getting-started)
   - [Configurations](#configurations)
   - [Usage](#usage)
-    - [npm scripts](#npm-scripts)
+    - [Shell Command](#shell-command)
+    - [npm Scripts](#npm-scripts)
 
 ## About
 
@@ -31,10 +32,10 @@ This tool is used to generate both declarations and documentations with couple o
 
 Copyright &copy; 2022 [DisQada](https://github.com/DisQada)
 
-This framework is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).  
+This framework is licensed under the [Apache License, Version 2.0](https://apache.org/licenses/LICENSE-2.0).  
 See the [LICENSE](LICENSE) file for more information.
 
-# Getting started
+# Getting Started
 
 ## Configurations
 
@@ -50,39 +51,40 @@ Add the file `workspace.json` to your project, below a table of all possible con
 
 ## Usage
 
-### npm scripts
+### Shell Command
 
-The tool is used via npm scripts that are already defined in it's package.json file, and can be called from your project npm scripts directly.
+To call the package's functionality, use the `workspace` shell command, which accepts the following properties:
 
-Below are the available npm scripts:
+| Name          | Type     | required | description                                          |
+| ------------- | -------- | -------- | ---------------------------------------------------- |
+| path          | Argument | NO       | configuration file path, default: "./workspace.json" |
+| --no-config   | Option   | NO       | Use it to not re-setup the configurations            |
+| --types OR -t | Option   | NO       | Emit declarations files                              |
+| --docs OR -d  | Option   | NO       | Emit documentations files                            |
 
-- `setup`: Install the required packages as dev dependencies
-- `config`: Read and cache the configuration file
-- `types`: Generate declarations using cached configurations then `clean`
-- `clean`: Clean the declaration files
-- `doc/docs`: Generate documentations using cached configurations
+### npm Scripts
 
-First thing to do is to run the following command to install all the necessary dependencies
+Below are the recommended npm scripts:
 
-```bash
-npm explore @disqada/workspace -- npm run setup
-```
+> We recommend regenerating the types every time the docs are created to be sure that we're documenting the latest types
 
-You'll most likely have the following scripts, use the `setup` script on initialisation and every time you update the configuration file, then use the `types` and `doc/docs` scripts for generating declarations and documentation
+- `types`: Generates declarations after re-setting up configurations
+- `docs`: runes `types` then generates documentations
 
 ```json
 "scripts": {
-    "config": "npm explore @disqada/workspace -- npm run config",
-    "types": "npm explore @disqada/workspace -- npm run types",
-    "docs": "npm explore @disqada/workspace -- npm run docs"
+  "types": "workspace ./workspace.json -t",
+  "docs": "workspace ./workspace.json -t -d",
 }
 ```
 
-If you're constantly changing the configurations, you can make one script that reads the configurations and generates the declarations/documentation like the following example:
+If you rarely change the configurations, you can make two script for each script to reduce the run time
 
 ```json
 "scripts": {
-    "types": "npm explore @disqada/workspace -- npm run config && npm explore @disqada/workspace -- npm run types",
-    "docs": "npm explore @disqada/workspace -- npm run config && npm explore @disqada/workspace -- npm run docs"
+  "types": "workspace ./workspace.json -t --no-config",
+  "types:conf": "workspace ./workspace.json -t",
+  "docs": "workspace ./workspace.json -t -d  --no-config",
+  "docs:conf": "workspace ./workspace.json -t -d",
 }
 ```
