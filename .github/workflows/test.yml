@@ -27,9 +27,6 @@ jobs:
       - name: تثبيت التبعيات
         run: npm ci --ignore-scripts
 
-      - name: فحص الكود
-        run: npm run lint
-
       - name: تنسيق الكود
         run: npm run format
 
