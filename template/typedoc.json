@@ -1,11 +1,7 @@
 {
   "$schema": "https://typedoc.org/schema.json",
 
-  "plugin": [
-    "@mxssfd/typedoc-theme",
-    "typedoc-plugin-missing-exports",
-    "typedoc-plugin-extras"
-  ],
+  "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-missing-exports", "typedoc-plugin-extras"],
   "entryPoints": ["../../../../{{types}}/exports.*"],
 
   "name": "{{displayName}}",
@@ -39,12 +35,7 @@
     "external": false
   },
 
-  "sort": [
-    "kind",
-    "enum-member-source-order",
-    "instance-first",
-    "alphabetical"
-  ],
+  "sort": ["kind", "enum-member-source-order", "instance-first", "alphabetical"],
 
   "exclude": ["**/node_modules/**/*"],
   "excludePrivate": true,

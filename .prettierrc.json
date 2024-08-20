@@ -1,9 +1,9 @@
 {
   "tabWidth": 2,
+  "printWidth": 120,
   "semi": false,
   "useTabs": false,
   "singleQuote": true,
-  "endOfLine": "auto",
-  "trailingComma": "none",
-  "embeddedLanguageFormatting": "off"
+  "endOfLine": "lf",
+  "trailingComma": "none"
 }

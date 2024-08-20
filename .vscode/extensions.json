@@ -1,16 +1,16 @@
 {
   "recommendations": [
+    "streetsidesoftware.code-spell-checker-arabic",
     "streetsidesoftware.code-spell-checker",
-    "visualstudioexptteam.vscodeintellicode",
-    "christian-kohler.path-intellisense",
-    "christian-kohler.npm-intellisense",
-    "chamboug.js-auto-backticks",
+    "usernamehw.errorlens",
     "dbaeumer.vscode-eslint",
+    "yzhang.markdown-all-in-one",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "idered.npm",
     "esbenp.prettier-vscode",
     "gruntfuggly.todo-tree",
-    "redhat.vscode-yaml",
-    "yzhang.markdown-all-in-one",
-    "usernamehw.errorlens",
-    "yoavbls.pretty-ts-errors"
+    "chakrounanas.turbo-console-log",
+    "redhat.vscode-yaml"
   ]
 }

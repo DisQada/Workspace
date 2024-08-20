@@ -1,37 +1,37 @@
-name: Test
+name: إختبار
 on:
   push:
   pull_request:
 
 concurrency:
-  # Group based on workflow name and PR if it exists, if no PR, let it run so carryforward flags work
+  # المجموعة بناءً على اسم العملية والطلب المسحوب إذا وُجد، إذا لم يوجد طلب مسحوب، دعها تعمل حتى تعمل علامات النقل
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
   test:
-    name: Test
+    name: إختبار
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: الفحص
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
+      - name: إعداد Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           registry-url: https://registry.npmjs.org
 
-      - name: Install dependencies
+      - name: تثبيت التبعيات
         run: npm ci --ignore-scripts
 
-      - name: Lint code
+      - name: فحص الكود
         run: npm run lint
 
-      - name: Format code
+      - name: تنسيق الكود
         run: npm run format
 
-      - name: Test code
+      - name: إختبار الكود
         run: npm test

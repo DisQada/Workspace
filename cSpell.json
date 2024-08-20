@@ -1,7 +1,7 @@
 {
   "caseSensitive": true,
   "useGitignore": true,
-  "language": "en-GB",
-  "files": ["./{cli,test,bin,template,config}/**/*", "*.md"],
-  "words": ["disqada", "mxssfd", "DisQada"]
+  "language": "ar,en",
+  "files": ["./{src,test,tests,cli,bin,template,config}/**/*", "**/*.md"],
+  "words": ["DisQada"]
 }
