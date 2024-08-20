@@ -1,5 +1,5 @@
-const assert = require('assert')
-const { cleanFile } = require('../cli/func/clean.js')
+import { equal } from 'assert/strict'
+import { cleanFile } from '../cli/func/clean.js'
 
 const fileData = `import { something } from "example/path";
 
@@ -68,11 +68,11 @@ export * from "./options";`
 describe('Cleaning one file', function () {
   it('should clean it properly', function () {
     const newFile = cleanFile(fileData, 'exports.d.ts')
-    assert.strictEqual(newFile, cleanedFile)
+    equal(newFile, cleanedFile)
   })
 
   it('should return it as is', function () {
     const newFile = cleanFile('function foo() { return 0 }')
-    assert.strictEqual(newFile, 'function foo() { return 0 }')
+    equal(newFile, 'function foo() { return 0 }')
   })
 })

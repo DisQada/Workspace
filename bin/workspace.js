@@ -1,19 +1,13 @@
 #!/usr/bin/env node
 
-/**
- * @file Main CLI that is run via the `disqada` command
- */
-
 'use strict'
 
-const { execSync } = require('child_process')
-const { program } = require('commander')
-const { resolve } = require('path')
+/** @import {ExecSyncOptionsWithStringEncoding} from 'child_process' */
+import { execSync } from 'child_process'
+import { program } from 'commander'
+import { resolve } from 'path'
 
-program
-  .name('@disqada/workspace')
-  .description('CLI to @disqada/workspace commands')
-  .version('0.1.0')
+program.name('@disqada/workspace').description('CLI to @disqada/workspace commands').version('0.1.0')
 
 program
   .argument('[path]', 'configuration file path', './workspace.json')
@@ -25,7 +19,7 @@ program.parse()
 
 const opts = program.opts()
 
-/** @type {object & import('child_process').ExecSyncOptionsWithStringEncoding} */
+/** @type {object & ExecSyncOptionsWithStringEncoding} */
 const options = {
   stdio: 'inherit',
   encoding: 'utf8',
@@ -34,22 +28,19 @@ const options = {
 
 const basePath = './node_modules/@disqada/workspace/config'
 
-/**
- *
- */
 async function run() {
   if (opts.config) {
-    await require('../cli/config.js')(options)
+    const configFunc = (await import('../cli/config.js')).default
+    await configFunc(options)
   }
 
   if (opts.types) {
     execSync(`tsc -p ${basePath}/tsconfig.json`, options)
-    await require('../cli/clean.js')(options)
+    const cleanFunc = (await import('../cli/clean.js')).default
+    await cleanFunc(options)
   }
 
-  if (opts.docs) {
-    execSync(`typedoc --options ${basePath}/typedoc.json`, options)
-  }
+  if (opts.docs) execSync(`typedoc --options ${basePath}/typedoc.json`, options)
 }
 
 run().catch(console.error)

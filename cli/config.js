@@ -1,6 +1,6 @@
-const { existsSync, mkdirSync } = require('fs')
-const { readFile, writeFile } = require('fs/promises')
-const { relative, resolve } = require('path')
+import { existsSync, mkdirSync } from 'fs'
+import { readFile, writeFile } from 'fs/promises'
+import { relative, resolve } from 'path'
 
 /**
  * @param {object} options
@@ -8,7 +8,7 @@ const { relative, resolve } = require('path')
  * @param {string} options.configPath
  * @async
  */
-async function run({ encoding = 'utf8', configPath }) {
+export default async function run({ encoding = 'utf8', configPath }) {
   const relativePath = relative(process.cwd(), __dirname)
 
   /** @type {string} */
@@ -62,10 +62,7 @@ async function run({ encoding = 'utf8', configPath }) {
 
     const arg2 = 'displayName'
     const regex2 = new RegExp('{{' + arg2 + '}}', 'g')
-    typedocData = typedocData.replace(
-      regex2,
-      packageData[arg2] ?? packageData[arg1]
-    )
+    typedocData = typedocData.replace(regex2, packageData[arg2] ?? packageData[arg1])
 
     /** @type {object} */
     typedocData = JSON.parse(typedocData)
@@ -98,9 +95,7 @@ async function run({ encoding = 'utf8', configPath }) {
   function fillData(data, arg, defaultValue) {
     /** @type {string} */
     let value = configData[arg]
-    if (!value) {
-      value = defaultValue
-    }
+    if (!value) value = defaultValue
 
     const regex = new RegExp('{{' + arg + '}}', 'g')
     return data.replace(regex, value)
@@ -131,11 +126,7 @@ async function run({ encoding = 'utf8', configPath }) {
       if (err.code === 'ENOENT') {
         mkdirSync(resolve(relativePath, '../config'))
         await writeFile(p, data, encoding)
-      } else {
-        throw err
-      }
+      } else throw err
     }
   }
 }
-
-module.exports = run

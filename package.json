@@ -11,7 +11,7 @@
   "bin": {
     "workspace": "./bin/workspace.js"
   },
-  "type": "commonjs",
+  "type": "module",
   "files": [
     "cli",
     "bin",

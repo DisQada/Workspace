@@ -1,6 +1,6 @@
-const { readFile, stat, writeFile } = require('fs/promises')
-const { resolve } = require('path')
-const { cleanFolder } = require('./func/clean.js')
+import { readFile, stat, writeFile } from 'fs/promises'
+import { resolve } from 'path'
+import { cleanFolder } from './func/clean.js'
 
 /**
  * @param {object} options
@@ -8,16 +8,14 @@ const { cleanFolder } = require('./func/clean.js')
  * @param {string} options.configPath
  * @async
  */
-async function run({ encoding = 'utf8', configPath }) {
+export default async function run({ encoding = 'utf8', configPath }) {
   let folderName
 
   const configData = await readFile(configPath, encoding)
   if (configData) {
     const data = JSON.parse(configData)
     folderName = data.types
-  } else {
-    folderName = 'types'
-  }
+  } else folderName = 'types'
 
   const typesPath = resolve(process.cwd(), folderName)
   const stats = await stat(typesPath)
@@ -25,11 +23,8 @@ async function run({ encoding = 'utf8', configPath }) {
   if (stats && stats.isDirectory()) {
     const fileMap = await cleanFolder(typesPath)
     for (const file of fileMap) {
-      const path = file[0]
-      const data = file[1]
+      const [path, data] = file
       await writeFile(path, data, encoding)
     }
   }
 }
-
-module.exports = run

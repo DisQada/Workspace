@@ -1,5 +1,5 @@
-const { readdir, stat } = require('fs/promises')
-const { resolve } = require('path')
+import { readdir, stat } from 'fs/promises'
+import { resolve } from 'path'
 
 /**
  * Read all the files in the folder and it's subfolders as full paths.
@@ -7,7 +7,7 @@ const { resolve } = require('path')
  * @returns {Promise<string[]>} full file paths
  * @async
  */
-async function readFolder(folderPath) {
+export async function readFolder(folderPath) {
   const cwd = process.cwd()
   const files = []
 
@@ -24,11 +24,8 @@ async function readFolder(folderPath) {
     const f = files[i]
     const s = stats[i]
 
-    if (s.isFile()) {
-      paths.push(f)
-    } else {
-      paths.push(...(await readFolder(f)))
-    }
+    if (s.isFile()) paths.push(f)
+    else paths.push(...(await readFolder(f)))
   }
 
   return paths
@@ -38,7 +35,7 @@ async function readFolder(folderPath) {
  * @param {string} str
  * @returns {[string, string | null, string | null]} [data, path, type]
  */
-function readImport(str) {
+export function readImport(str) {
   let data = ''
 
   const bWord = /typeof import\(("|'|`)/
@@ -48,9 +45,7 @@ function readImport(str) {
   const before = str.search(bWord)
   let start = str.search(sWord)
 
-  if (start === -1) {
-    return [str, null, null]
-  }
+  if (start === -1) return [str, null, null]
 
   if (before !== -1 && before < start) {
     const breakIndex = str.search(/("|'|`)\)/) + 2
@@ -58,9 +53,7 @@ function readImport(str) {
     str = str.substring(breakIndex)
 
     start = str.search(sWord)
-    if (start === -1) {
-      return [data + str, null, null]
-    }
+    if (start === -1) return [data + str, null, null]
   }
 
   data += str.substring(0, start)
@@ -85,15 +78,8 @@ function getEndIndex(str) {
   const ends = [' ', '}', ')', '|', '[', ']', '<', '>', '\r', '\n', ',', ';']
   for (let i = 0; i < str.length; i++) {
     const char = str[i]
-    if (ends.some((x) => x === char)) {
-      return i
-    }
+    if (ends.some((x) => x === char)) return i
   }
 
   throw new Error("Shouldn't be here")
-}
-
-module.exports = {
-  readFolder,
-  readImport
 }

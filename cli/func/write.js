@@ -3,10 +3,8 @@
  * @param {Map<string, string[]>} imports imports data as <path, type[]>
  * @returns {string | void} the type imports string
  */
-function writeImports(imports) {
-  if (imports.size === 0) {
-    return
-  }
+export function writeImports(imports) {
+  if (imports.size === 0) return
 
   let lines = ''
   for (const iterator of imports) {
@@ -17,8 +15,4 @@ function writeImports(imports) {
   }
 
   return lines
-}
-
-module.exports = {
-  writeImports
 }
