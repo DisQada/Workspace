@@ -28,7 +28,7 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: تنسيق الكود
-        run: npm run format
+        run: npm run format --if-present
 
       - name: إختبار الكود
         run: npm test

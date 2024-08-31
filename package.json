@@ -36,7 +36,7 @@
     "documentation",
     "generated"
   ],
-  "author": "Assayyaad <hi@thealpha.pro> (https://links.thealpha.pro)",
+  "author": "DisQada <hi@disqada.org> (https://links.disqada.org)",
   "license": "Apache-2.0",
   "dependencies": {
     "commander": "^12.1.0"

@@ -1,7 +1,0 @@
-{
-  "caseSensitive": true,
-  "useGitignore": true,
-  "language": "ar,en",
-  "files": ["./{src,test,tests,cli,bin,template,config}/**/*", "**/*.md"],
-  "words": ["DisQada"]
-}
