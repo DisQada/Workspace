@@ -65,14 +65,16 @@ export default something;
 
 export * from "./options";`
 
-describe('Cleaning one file', function () {
-  it('should clean it properly', function () {
-    const newFile = cleanFile(fileData, 'exports.d.ts')
-    equal(newFile, cleanedFile)
-  })
+describe('clean', function () {
+  describe('cleanFile()', function () {
+    it('should clean it properly', function () {
+      const newFile = cleanFile(fileData, 'exports.d.ts')
+      equal(newFile, cleanedFile)
+    })
 
-  it('should return it as is', function () {
-    const newFile = cleanFile('function foo() { return 0 }')
-    equal(newFile, 'function foo() { return 0 }')
+    it('should return it as is', function () {
+      const newFile = cleanFile('function foo() { return 0 }')
+      equal(newFile, 'function foo() { return 0 }')
+    })
   })
 })
