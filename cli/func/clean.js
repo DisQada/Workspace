@@ -28,7 +28,8 @@ export function cleanFile(data) {
   if (data.includes('import(')) data = cleanImports(data)
 
   data = data.replace(/\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g, '...$1: $2')
-  data = data.replace(/export(?!s)(?!\s+(declare|=|{))/g, 'export declare')
+  data = data.replace(/export(?!s)(?!\s+(\*|declare|=|{))/g, 'export declare')
+  data = data.replace(/\n?(export type (\w+) = \2;|\/\*\* @typedef {(\w+)} \3 \*\/)/g, '')
   data = data.replace(/export(?!s)(\s+=)/g, 'export default')
 
   return data
