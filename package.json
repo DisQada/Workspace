@@ -4,6 +4,7 @@
   "version": "1.5.2",
   "description": "Generate types and docs with a click",
   "scripts": {
+    "prepack": "npm run format",
     "format": "prettier . --write --ignore-path .gitignore",
     "test": "mocha ./test/**/*.test.js"
   },
