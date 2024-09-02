@@ -76,7 +76,7 @@ export default async function run({ encoding = 'utf8', configPath }) {
       navLinks['Source Code'] = repo.url
     }
 
-    const links = packageData['links']
+    const links = configData['links']
     if (links) {
       typedocData['navigationLinks'] = Object.assign(navLinks, links)
     }
