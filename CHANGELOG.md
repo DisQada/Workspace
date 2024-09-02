@@ -1,3 +1,12 @@
+## [1.5.3](https://github.com/DisQada/Workspace/compare/v1.5.2...v1.5.3) (2024-09-02)
+
+
+### Bug Fixes
+
+* تحسين تنظيف بيانات ملفات الأنواع ([dd7a810](https://github.com/DisQada/Workspace/commit/dd7a8101f291c9b975c3dae6441877aabf855d37))
+* عدم وضع ملف تصدير الأنواع في نهاية ملفات التصدير ([45b7fa8](https://github.com/DisQada/Workspace/commit/45b7fa815cfd35fd75d8532e5675e5814e395a80))
+* قراءة روابط صحفة المستندات من الملف الصحيح ([a3f52dd](https://github.com/DisQada/Workspace/commit/a3f52dd10bbddd0e021b1b27a3ca3e4a0c212430))
+
 ## [1.5.2](https://github.com/DisQada/Workspace/compare/v1.5.1...v1.5.2) (2024-08-20)
 
 

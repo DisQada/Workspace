@@ -1,7 +1,7 @@
 {
   "displayName": "Workspace",
   "name": "@disqada/workspace",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Generate types and docs with a click",
   "scripts": {
     "prepack": "npm run format",
