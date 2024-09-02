@@ -8,7 +8,7 @@ describe('read', function () {
       const paths = await readFolder('cli')
       deepEqual(
         paths,
-        ['clean', 'config', 'func/clean', 'func/read', 'func/write'].map((subPath) =>
+        ['clean', 'config', 'func/clean', 'func/read', 'func/write', 'types'].map((subPath) =>
           (process.cwd() + '/cli/' + subPath + '.js').replace(/\//g, sep)
         )
       )

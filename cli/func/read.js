@@ -5,7 +5,6 @@ import { resolve } from 'path'
  * Read all the files in the folder and it's subfolders as full paths.
  * @param {string} folderPath An absolute path to the folder to read
  * @returns {Promise<string[]>} full file paths
- * @async
  */
 export async function readFolder(folderPath) {
   const cwd = process.cwd()

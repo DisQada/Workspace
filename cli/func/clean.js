@@ -5,7 +5,6 @@ import { writeImports } from './write.js'
 /**
  * @param {string} path
  * @returns {Promise<Map<string, string>>} Map<fileAbsolutePath, fileData>
- * @async
  */
 export async function cleanFolder(path) {
   const filePaths = await readFolder(path)
@@ -27,10 +26,11 @@ export async function cleanFolder(path) {
 export function cleanFile(data) {
   if (data.includes('import(')) data = cleanImports(data)
 
-  data = data.replace(/\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g, '...$1: $2')
-  data = data.replace(/export(?!s)(?!\s+(\*|declare|=|{))/g, 'export declare')
-  data = data.replace(/\n?(export type (\w+) = \2;|\/\*\* @typedef {(\w+)} \3 \*\/)/g, '')
-  data = data.replace(/export(?!s)(\s+=)/g, 'export default')
+  data = data
+    .replace(/\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g, '...$1: $2')
+    .replace(/\n?(export type (\w+) = \2;|\/\*\* @typedef {(\w+)} \3 \*\/)/g, '')
+    .replace(/export(?!s)(?!\s+(\*|declare|=|{))/g, 'export declare')
+    .replace(/export(?!s)(\s+=)/g, 'export default')
 
   return data
 }

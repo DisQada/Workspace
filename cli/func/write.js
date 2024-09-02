@@ -7,12 +7,7 @@ export function writeImports(imports) {
   if (imports.size === 0) return
 
   let lines = ''
-  for (const iterator of imports) {
-    const path = iterator[0]
-    const types = iterator[1]
-
-    lines += `import type { ${types.join(', ')} } from "${path}";\n`
-  }
+  for (const [path, types] of imports) lines += `import type { ${types.join(', ')} } from "${path}";\n`
 
   return lines
 }

@@ -1,131 +1,152 @@
-/** @import {CleanOptions, ConfigData, PackageData, TypedocData} from './types.js' */
+/** @import {CleanOptions, ConfigData, ConfigKey, PackageData, TypedocData} from './types.js' */
 import { existsSync } from 'fs'
 import { mkdir, readFile, writeFile, stat } from 'fs/promises'
 import { dirname, relative, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
+const TEMPLATE_DIR = '../template'
+const CONFIG_DIR = '../config'
 
 /**
- * @param {object} options
- * @param {NodeJS.BufferEncoding} options.encoding
- * @param {string} options.configPath
- * @async
+ * @param {CleanOptions} options The configuration files path and encoding
  */
-export default async function run({ encoding = 'utf8', configPath }) {
-  const relativePath = relative(process.cwd(), __dirname)
+export default async function run({ path: cPath, encoding = 'utf8' }) {
+  const rPath = relative(process.cwd(), __dirname)
+  const options = { path: rPath, encoding }
+  const config = await getConfigData(cPath, options)
 
+  await Promise.all([
+    fillTsData('tsconfig', config, options),
+    fillTsData('tsconfig.doc', config, options),
+    fillTypedocData(config, options)
+  ])
+}
+
+/**
+ * @param {string} path The configuration file path
+ * @param {CleanOptions} options
+ * @returns {Promise<ConfigData>}
+ */
+async function getConfigData(path, options) {
   /** @type {string} */
-  let configData
+  let data
 
-  if (!existsSync(configPath)) {
-    const data = await readTemplateFile('workspace')
-    await writeFile(configPath, data, encoding)
-    configData = JSON.parse(data.toString())
-  } else {
-    const data = await readFile(configPath, encoding)
-    configData = JSON.parse(data)
+  if (existsSync(path)) data = await readFile(path, options.encoding)
+  else {
+    data = await readTemplateFile('workspace', options)
+    await writeFile(path, data, options.encoding)
   }
+
+  return JSON.parse(data)
+}
+
+/**
+ * @param {string} fileName
+ * @param {ConfigData} config
+ * @param {CleanOptions} options
+ * @returns {Promise<void>}
+ */
+async function fillTsData(fileName, config, options) {
+  let data = await readTemplateFile(fileName, options)
+  if (!data) return
+
+  data = fillData(data, config, [
+    ['root', 'src'],
+    ['types', 'types']
+  ])
+
+  await writeConfigFile(fileName, data, options)
+}
+
+/**
+ * @param {ConfigData} config
+ * @param {CleanOptions} options
+ * @returns {Promise<void>}
+ */
+async function fillTypedocData(config, options) {
+  let data = await readTemplateFile('typedoc', options)
+  if (!data) return
+
+  data = fillData(data, config, [
+    ['root', 'src'],
+    ['types', 'types'],
+    ['out', 'docs']
+  ])
 
   //
 
-  let tsData = await readTemplateFile('tsconfig')
-  if (tsData) {
-    tsData = fillData(tsData, 'root', 'src')
-    tsData = fillData(tsData, 'types', 'types')
-
-    await writeConfigFile('tsconfig', tsData)
-  }
+  const pPath = resolve(process.cwd(), 'package.json')
+  /** @type {PackageData} */
+  const pData = JSON.parse(await readFile(pPath, options.encoding))
 
   //
 
-  let tsDocData = await readTemplateFile('tsconfig.doc')
-  if (tsDocData) {
-    tsDocData = fillData(tsDocData, 'types', 'types')
+  const arg1 = 'name'
+  const regex1 = new RegExp('{{' + arg1 + '}}', 'g')
 
-    await writeConfigFile('tsconfig.doc', tsDocData)
-  }
+  const arg2 = 'displayName'
+  const regex2 = new RegExp('{{' + arg2 + '}}', 'g')
+
+  data = data.replace(regex1, pData[arg1]).replace(regex2, pData[arg2] || pData[arg1])
 
   //
 
-  let typedocData = await readTemplateFile('typedoc')
-  if (typedocData) {
-    typedocData = fillData(typedocData, 'root', 'src')
-    typedocData = fillData(typedocData, 'types', 'types')
-    typedocData = fillData(typedocData, 'out', 'docs')
+  /** @type {TypedocData} */
+  const tdData = JSON.parse(data)
+  let navLinks = tdData.navigationLinks
 
-    //
+  const repo = pData.repository
+  if (typeof repo === 'object' && repo.url) navLinks['Source Code'] = repo.url
 
-    const packagePath = resolve(process.cwd(), 'package.json')
-    /** @type {object} */
-    const packageData = JSON.parse(await readFile(packagePath, encoding))
+  const links = config.links
+  if (links) navLinks = Object.assign(navLinks, links)
 
-    const arg1 = 'name'
-    const regex1 = new RegExp('{{' + arg1 + '}}', 'g')
-    typedocData = typedocData.replace(regex1, packageData[arg1])
+  //
 
-    const arg2 = 'displayName'
-    const regex2 = new RegExp('{{' + arg2 + '}}', 'g')
-    typedocData = typedocData.replace(regex2, packageData[arg2] ?? packageData[arg1])
+  tdData.navigationLinks = navLinks
+  await writeConfigFile('typedoc', JSON.stringify(tdData), options)
+}
 
-    /** @type {object} */
-    typedocData = JSON.parse(typedocData)
-    const navLinks = typedocData['navigationLinks']
-
-    const repo = packageData['repository']
-    if (repo && typeof repo === 'object' && repo.url) {
-      navLinks['Source Code'] = repo.url
-    }
-
-    const links = configData['links']
-    if (links) {
-      typedocData['navigationLinks'] = Object.assign(navLinks, links)
-    }
-
+/**
+ * @param {string} data
+ * @param {ConfigData} config
+ * @param {[ConfigKey, string][]} argTuples
+ * @returns {string}
+ */
+function fillData(data, config, argTuples) {
+  for (const [arg, defaultValue] of argTuples) {
     /** @type {string} */
-    typedocData = JSON.stringify(typedocData)
-
-    //
-
-    await writeConfigFile('typedoc', typedocData)
-  }
-
-  /**
-   * @param {string} data
-   * @param {string} arg
-   * @param {string} defaultValue
-   * @returns {string}
-   */
-  function fillData(data, arg, defaultValue) {
-    /** @type {string} */
-    let value = configData[arg]
-    if (!value) value = defaultValue
-
+    const value = config[arg] || defaultValue
     const regex = new RegExp('{{' + arg + '}}', 'g')
-    return data.replace(regex, value)
+    data = data.replace(regex, value)
   }
 
-  /**
-   * Read config template file
-   * @param {string} fileName
-   * @returns {Promise<string>} config template file data
-   */
-  async function readTemplateFile(fileName) {
-    const p = resolve(relativePath, `../template/${fileName}.json`)
-    return await readFile(p, encoding)
-  }
+  return data
+}
 
-  /**
-   * Write config data to a file
-   * @param {string} fileName
-   * @param {string} data
-   * @returns {Promise<void>}
-   */
-  async function writeConfigFile(fileName, data) {
-    const dPath = resolve(process.cwd(), '../config')
-    const fPath = resolve(dPath, `${fileName}.json`)
+/**
+ * Read config template file
+ * @param {string} fileName
+ * @param {CleanOptions} options
+ * @returns {Promise<string>} config template file data
+ */
+async function readTemplateFile(fileName, { path, encoding }) {
+  const p = resolve(path, `${TEMPLATE_DIR}/${fileName}.json`)
+  return await readFile(p, encoding)
+}
 
-    if (!(await stat(dPath)).isDirectory()) await mkdir(dPath)
-    await writeFile(fPath, data, encoding)
-  }
+/**
+ * Write config data to a file
+ * @param {string} fileName
+ * @param {string} data
+ * @param {CleanOptions} options
+ * @returns {Promise<void>}
+ */
+async function writeConfigFile(fileName, data, { path, encoding }) {
+  const dPath = resolve(path, CONFIG_DIR)
+  const fPath = resolve(dPath, `${fileName}.json`)
+
+  if (!(await stat(dPath)).isDirectory()) await mkdir(dPath)
+  await writeFile(fPath, data, encoding)
 }

@@ -1,30 +1,38 @@
+/** @import {CleanOptions} from './types.js' */
 import { readFile, stat, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import { cleanFolder } from './func/clean.js'
 
 /**
- * @param {object} options
- * @param {NodeJS.BufferEncoding} options.encoding
- * @param {string} options.configPath
- * @async
+ * @param {CleanOptions} options The configuration files path and encoding
  */
-export default async function run({ encoding = 'utf8', configPath }) {
-  let folderName
+export default async function run({ path: cPath, encoding = 'utf8' }) {
+  const fn = await getFolderName({ path: cPath, encoding })
+  const tPath = resolve(process.cwd(), fn)
+  const stats = await stat(tPath)
 
-  const configData = await readFile(configPath, encoding)
-  if (configData) {
-    const data = JSON.parse(configData)
-    folderName = data.types
-  } else folderName = 'types'
+  if (stats && stats.isDirectory()) await clearing({ path: tPath, encoding })
+  else console.error('No types folder found')
+}
 
-  const typesPath = resolve(process.cwd(), folderName)
-  const stats = await stat(typesPath)
+/**
+ * @param {CleanOptions} options
+ * @returns {Promise<void>}
+ */
+async function clearing({ path, encoding }) {
+  const fileMap = await cleanFolder(path)
+  const promises = []
 
-  if (stats && stats.isDirectory()) {
-    const fileMap = await cleanFolder(typesPath)
-    for (const file of fileMap) {
-      const [path, data] = file
-      await writeFile(path, data, encoding)
-    }
-  }
+  for (const [p, data] of fileMap) promises.push(writeFile(p, data, encoding))
+  await Promise.all(promises)
+}
+
+/**
+ * @param {CleanOptions} options
+ * @returns {Promise<string>}
+ */
+async function getFolderName({ path, encoding }) {
+  const configData = await readFile(path, encoding)
+  if (configData) return JSON.parse(configData).types
+  else return 'types'
 }
