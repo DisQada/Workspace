@@ -62,13 +62,12 @@ export { string };
 export declare type exports = number
 
 export default something;
-
-export * from "./options";`
+`
 
 describe('clean', function () {
   describe('cleanFile()', function () {
     it('should clean it properly', function () {
-      const newFile = cleanFile(fileData, 'exports.d.ts')
+      const newFile = cleanFile(fileData)
       equal(newFile, cleanedFile)
     })
 

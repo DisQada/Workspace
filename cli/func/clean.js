@@ -14,7 +14,7 @@ export async function cleanFolder(path) {
   const newFiles = new Map()
 
   for (let i = 0; i < filePaths.length; i++) {
-    newFiles.set(filePaths[i], cleanFile(filesData[i], filePaths[i]))
+    newFiles.set(filePaths[i], cleanFile(filesData[i]))
   }
 
   return newFiles
@@ -22,17 +22,14 @@ export async function cleanFolder(path) {
 
 /**
  * @param {string} data
- * @param {string} [path]
  * @returns {string}
  */
-export function cleanFile(data, path) {
+export function cleanFile(data) {
   if (data.includes('import(')) data = cleanImports(data)
 
   data = data.replace(/\.\.\.([_a-zA-Z0-9]+): (([_a-zA-Z0-9]+)(\[[_a-zA-Z0-9]*\])?)\[\]/g, '...$1: $2')
   data = data.replace(/export(?!s)(?!\s+(declare|=|{))/g, 'export declare')
   data = data.replace(/export(?!s)(\s+=)/g, 'export default')
-
-  if (path?.endsWith('exports.d.ts')) data += '\nexport * from "./options";'
 
   return data
 }
