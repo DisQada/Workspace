@@ -91,7 +91,8 @@ async function fillTypedocData(config, defaultConfig, options) {
   let navLinks = tdData.navigationLinks
 
   const repo = pData.repository
-  if (typeof repo === 'object' && repo.url) navLinks['Source Code'] = repo.url
+  if (typeof repo === 'string') navLinks['Repository'] = fixRepoUrl(repo)
+  else if (typeof repo === 'object' && repo.url) navLinks['Repository'] = fixRepoUrl(repo.url)
 
   const links = config.links
   if (links) navLinks = Object.assign(navLinks, links)
@@ -144,4 +145,16 @@ async function writeConfigFile(fileName, data, { path, encoding }) {
 
   if (!existsSync(dPath)) await mkdir(dPath)
   await writeFile(fPath, data, encoding)
+}
+
+/**
+ * @param {string} url
+ */
+function fixRepoUrl(url) {
+  if (url.startsWith('git+https://')) return url.slice(4).replace(/\.git$/, '')
+  if (url.startsWith('github:')) return `https://github.com/${url.slice(7)}`
+  if (url.startsWith('gitlab:')) return `https://gitlab.com/${url.slice(7)}`
+  if (url.startsWith('bitbucket:')) return `https://bitbucket.org/${url.slice(10)}`
+
+  return url
 }
