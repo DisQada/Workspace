@@ -15,11 +15,13 @@ export default async function run({ path: cPath, encoding = 'utf8' }) {
   const rPath = relative(process.cwd(), __dirname)
   const options = { path: rPath, encoding }
   const config = await getConfigData(cPath, options)
+  /** @type {ConfigData} */
+  const defaultConfig = JSON.parse(await readTemplateFile('workspace', options))
 
   await Promise.all([
-    fillTsData('tsconfig', config, options),
-    fillTsData('tsconfig.doc', config, options),
-    fillTypedocData(config, options)
+    fillTsData('tsconfig', config, defaultConfig, options),
+    fillTsData('tsconfig.doc', config, defaultConfig, options),
+    fillTypedocData(config, defaultConfig, options)
   ])
 }
 
@@ -44,45 +46,35 @@ async function getConfigData(path, options) {
 /**
  * @param {string} fileName
  * @param {ConfigData} config
+ * @param {ConfigData} defaultConfig
  * @param {CleanOptions} options
  * @returns {Promise<void>}
  */
-async function fillTsData(fileName, config, options) {
+async function fillTsData(fileName, config, defaultConfig, options) {
   let data = await readTemplateFile(fileName, options)
   if (!data) return
 
-  data = fillData(data, config, [
-    ['root', 'src'],
-    ['types', 'types']
-  ])
-
+  data = fillData(data, config, defaultConfig, ['root', 'types'])
   await writeConfigFile(fileName, data, options)
 }
 
 /**
  * @param {ConfigData} config
+ * @param {ConfigData} defaultConfig
  * @param {CleanOptions} options
  * @returns {Promise<void>}
  */
-async function fillTypedocData(config, options) {
+async function fillTypedocData(config, defaultConfig, options) {
   let data = await readTemplateFile('typedoc', options)
   if (!data) return
 
-  data = fillData(data, config, [
-    ['root', 'src'],
-    ['types', 'types'],
-    ['out', 'docs'],
-    ['lang', 'en'],
-    ['title', 'Home']
-  ])
+  data = fillData(data, config, defaultConfig, ['root', 'types', 'out', 'lang', 'title'])
 
   //
 
   const pPath = resolve(process.cwd(), 'package.json')
   /** @type {PackageData} */
   const pData = JSON.parse(await readFile(pPath, options.encoding))
-
-  //
 
   const arg1 = 'name'
   const regex1 = new RegExp('{{' + arg1 + '}}', 'g')
@@ -113,14 +105,15 @@ async function fillTypedocData(config, options) {
 /**
  * @param {string} data
  * @param {ConfigData} config
- * @param {[ConfigKey, string][]} argTuples
+ * @param {ConfigData} defaultConfig
+ * @param {ConfigKey[]} keys
  * @returns {string}
  */
-function fillData(data, config, argTuples) {
-  for (const [arg, defaultValue] of argTuples) {
+function fillData(data, config, defaultConfig, keys) {
+  for (const key of keys) {
     /** @type {string} */
-    const value = config[arg] || defaultValue
-    const regex = new RegExp('{{' + arg + '}}', 'g')
+    const value = config[key] || defaultConfig[key]
+    const regex = new RegExp('{{' + key + '}}', 'g')
     data = data.replace(regex, value)
   }
 
