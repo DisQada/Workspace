@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/DisQada/Workspace/compare/v1.5.3...v1.6.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* إصلاح أوامر الطرد ([a1504ae](https://github.com/DisQada/Workspace/commit/a1504ae90b41d8f22c3d59708a98dc0c2182a24e))
+* قراءة رابط مستودع الطرد بمختلف أشكاله ([6d06925](https://github.com/DisQada/Workspace/commit/6d06925d4af169fa5c4b37f34514fbc0dddd95ce))
+
+
+### Features
+
+* إضافة تغيير اللغة والعنوان لمستندات الواجهة البرمجية ([7d6f2c2](https://github.com/DisQada/Workspace/commit/7d6f2c2f47f81061d361b278e14087f0eb907f9a))
+* إعداد التكوينات تلقائياً بعد تحميل الطرد ([bd12a1a](https://github.com/DisQada/Workspace/commit/bd12a1a86946b398eb98d9823a4297d24788a65e))
+
 ## [1.5.3](https://github.com/DisQada/Workspace/compare/v1.5.2...v1.5.3) (2024-09-02)
 
 
