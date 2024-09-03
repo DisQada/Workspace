@@ -20,11 +20,8 @@
     "LICENSE",
     "*.md"
   ],
-  "homepage": "https://disqada.github.io/Workspace",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DisQada/Workspace.git"
-  },
+  "homepage": "https://github.com/DisQada/Workspace",
+  "repository": "github:DisQada/Workspace",
   "bugs": {
     "url": "https://github.com/DisQada/Workspace/issues"
   },

@@ -1,7 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
 
-  "plugin": ["@mxssfd/typedoc-theme", "typedoc-plugin-missing-exports", "typedoc-plugin-extras"],
   "entryPoints": ["../../../../{{types}}/exports.*"],
 
   "name": "{{displayName}}",
@@ -26,7 +25,7 @@
   "categorizeByGroup": true,
 
   "navigationLinks": {
-    "npm package": "https://www.npmjs.com/package/{{name}}"
+    "npm": "https://npmjs.com/package/{{name}}"
   },
   "visibilityFilters": {
     "private": false,

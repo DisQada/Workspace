@@ -10,13 +10,13 @@ import { resolve } from 'path'
 
 program
   .name('@disqada/workspace')
-  .description('CLI to @disqada/workspace commands')
+  .description('CLI to use @disqada/workspace commands')
   .version('0.1.0')
 
   .argument('[path]', 'configuration file path', './workspace.json')
   .option('-c, --config', 'read and cache configuration file')
   .option('-t, --types', 'generate typescript types')
-  .option('-d, --docs', 'generate documentation')
+  .option('-d, --docs', 'generate documentation files')
 
   .parse()
 
