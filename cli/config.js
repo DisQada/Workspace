@@ -1,6 +1,6 @@
 /** @import {CleanOptions, ConfigData, ConfigKey, PackageData, TypedocData} from './types.js' */
 import { existsSync } from 'fs'
-import { mkdir, readFile, writeFile, stat } from 'fs/promises'
+import { readFile, writeFile, mkdir } from 'fs/promises'
 import { dirname, relative, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -147,6 +147,6 @@ async function writeConfigFile(fileName, data, { path, encoding }) {
   const dPath = resolve(path, CONFIG_DIR)
   const fPath = resolve(dPath, `${fileName}.json`)
 
-  if (!(await stat(dPath)).isDirectory()) await mkdir(dPath)
+  if (!existsSync(dPath)) await mkdir(dPath)
   await writeFile(fPath, data, encoding)
 }

@@ -12,7 +12,7 @@
   "emit": "docs",
   "entryPointStrategy": "expand",
   "commentStyle": "jsdoc",
-  "htmlLang": "en-GB",
+  "lang": "en-GB",
 
   "theme": "my-theme",
   "darkHighlightTheme": "dark-plus",

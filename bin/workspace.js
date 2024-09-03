@@ -14,7 +14,7 @@ program
   .version('0.1.0')
 
   .argument('[path]', 'configuration file path', './workspace.json')
-  .option('--no-config', 'skip re-reading configuration file')
+  .option('-c, --config', 'read and cache configuration file')
   .option('-t, --types', 'generate typescript types')
   .option('-d, --docs', 'generate documentation')
 
@@ -33,9 +33,9 @@ const basePath = './node_modules/@disqada/workspace/config'
 run().catch(console.error)
 
 async function run() {
-  if (opts.config) runConfig()
-  if (opts.types) runTypes()
-  if (opts.docs) runDocs()
+  if (opts.config) await runConfig()
+  if (opts.types) await runTypes()
+  if (opts.docs) await runDocs()
 }
 
 async function runConfig() {
