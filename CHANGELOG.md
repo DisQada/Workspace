@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/DisQada/Workspace/compare/v1.6.0...v1.6.1) (2024-09-03)
+
+
+### Bug Fixes
+
+* إرجاع سطر تحديد الإضافات تكوينات typedoc ([5afb0db](https://github.com/DisQada/Workspace/commit/5afb0db6cabf684d19fabd66506be11d5ee5fbdf))
+
 # [1.6.0](https://github.com/DisQada/Workspace/compare/v1.5.3...v1.6.0) (2024-09-03)
 
 
