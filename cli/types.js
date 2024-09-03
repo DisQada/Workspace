@@ -6,7 +6,7 @@ export {}
  * @property {NodeJS.BufferEncoding} encoding
  */
 
-/** @typedef {'root' | 'types' | 'out' | 'links' | string} ConfigKey */
+/** @typedef {'root' | 'types' | 'out' | 'lang' | 'title' | 'links' | string} ConfigKey */
 
 /**
  * @typedef {object} ConfigData

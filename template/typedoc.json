@@ -12,7 +12,7 @@
   "emit": "docs",
   "entryPointStrategy": "expand",
   "commentStyle": "jsdoc",
-  "lang": "en-GB",
+  "lang": "{{lang}}",
 
   "theme": "my-theme",
   "darkHighlightTheme": "dark-plus",
@@ -43,7 +43,7 @@
   "excludeReferences": false,
   "excludeNotDocumented": false,
 
-  "customTitle": "Home",
+  "customTitle": "{{title}}",
   "footerLastModified": true,
   "footerTypedocVersion": true
 }

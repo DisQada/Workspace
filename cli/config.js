@@ -71,7 +71,9 @@ async function fillTypedocData(config, options) {
   data = fillData(data, config, [
     ['root', 'src'],
     ['types', 'types'],
-    ['out', 'docs']
+    ['out', 'docs'],
+    ['lang', 'en'],
+    ['title', 'Home']
   ])
 
   //

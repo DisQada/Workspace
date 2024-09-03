@@ -5,6 +5,9 @@
   "types": "types",
   "out": "docs",
 
+  "lang": "en",
+  "title": "Home",
+
   "links": {
     "DisQada": "https://links.DisQada.org"
   }
