@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/DisQada/Workspace/compare/v1.6.1...v1.6.2) (2024-09-14)
+
+
+### Bug Fixes
+
+* محاولة إصلاح مشكلة مجلد التكوينات ([00dca32](https://github.com/DisQada/Workspace/commit/00dca32a96d6da8938ec2c39339645e3d733ae3a))
+
 ## [1.6.1](https://github.com/DisQada/Workspace/compare/v1.6.0...v1.6.1) (2024-09-03)
 
 

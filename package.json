@@ -1,7 +1,7 @@
 {
   "displayName": "Workspace",
   "name": "@disqada/workspace",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Generate types and docs with a click",
   "scripts": {
     "install": "workspace ./workspace.json -c",
