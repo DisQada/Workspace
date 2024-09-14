@@ -1,4 +1,4 @@
-/** @import {CleanOptions} from './types.js' */
+/** @import { CleanOptions } from './types.js' */
 import { readFile, stat, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 import { cleanFolder } from './func/clean.js'

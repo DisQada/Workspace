@@ -1,4 +1,4 @@
-/** @import {CleanOptions, ConfigData, ConfigKey, PackageData, TypedocData} from './types.js' */
+/** @import { CleanOptions, ConfigData, ConfigKey, PackageData, TypedocData } from './types.js' */
 import { existsSync } from 'fs'
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { dirname, relative, resolve } from 'path'

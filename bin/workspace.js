@@ -33,9 +33,29 @@ const basePath = './node_modules/@disqada/workspace/config'
 run().catch(console.error)
 
 async function run() {
-  if (opts.config) await runConfig()
-  if (opts.types) await runTypes()
-  if (opts.docs) await runDocs()
+  if (opts.config) {
+    try {
+      await runConfig()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  if (opts.types) {
+    try {
+      await runTypes()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  if (opts.docs) {
+    try {
+      await runDocs()
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
 
 async function runConfig() {

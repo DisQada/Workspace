@@ -13,7 +13,7 @@ export {}
  * @property {string} root
  * @property {string} types
  * @property {string} out
- * @property {{[name:string]:string}} links
+ * @property {{ [name :string] :string }} links
  */
 
 /** @typedef {'name' | 'displayName' | 'repository' | string}  PackageKey */
